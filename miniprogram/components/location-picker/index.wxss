@@ -1,0 +1,97 @@
+.location-picker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  visibility: hidden;
+}
+
+.location-picker.show {
+  visibility: visible;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  max-height: 85vh;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.show .content {
+  transform: translateY(0);
+}
+
+.header {
+  padding: 30rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-bottom: 1rpx solid #eee;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  font-size: 40rpx;
+  color: #999;
+}
+
+.section {
+  padding: 20rpx;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #999;
+  padding: 20rpx;
+}
+
+.location-list {
+  padding: 0 20rpx;
+}
+
+.location-item {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+  position: relative;
+}
+
+.location-item .name {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.location-item .address {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.hot-tag {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  background: #ff4d4f;
+  color: #fff;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+} 

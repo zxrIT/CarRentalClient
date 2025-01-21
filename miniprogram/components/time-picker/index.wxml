@@ -1,0 +1,97 @@
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  bind:close="onClose"
+  round
+  custom-style="max-height: 90vh;"
+>
+  <view class="time-picker-container">
+    <!-- 顶部标题栏 -->
+    <view class="header">
+      <text>选择时间</text>
+    </view>
+
+    <!-- 取还车时间显示 -->
+    <view class="date-display">
+      <view class="pickup-date {{!isSelectingReturn ? 'active' : ''}}" bindtap="switchToPickup">
+        <text class="date-label">取车时间</text>
+        <text class="date-value">{{pickupDate || '请选择'}}</text>
+        <text class="week" wx:if="{{pickupDate}}">周{{pickupWeekDay}} {{pickupTime}}</text>
+      </view>
+      <view class="duration">
+        <text class="duration-days">共 {{duration}} 天</text>
+        <text class="duration-tip">延长租期享更多优惠</text>
+      </view>
+      <view class="return-date {{isSelectingReturn ? 'active' : ''}}" bindtap="switchToReturn">
+        <text class="date-label">还车时间</text>
+        <text class="date-value">{{returnDate || '请选择'}}</text>
+        <text class="week" wx:if="{{returnDate}}">周{{returnWeekDay}} {{returnTime}}</text>
+      </view>
+    </view>
+
+    <!-- 优惠提示 -->
+    <view class="discount-tip">延长租期可享受更高优惠</view>
+
+    <!-- 日历主体 -->
+    <view class="calendar-body">
+      <text class="month">{{currentMonth}}</text>
+      <view class="week-row">
+        <text>日</text>
+        <text>一</text>
+        <text>二</text>
+        <text>三</text>
+        <text>四</text>
+        <text>五</text>
+        <text>六</text>
+      </view>
+      <view class="days-grid">
+        <view 
+          wx:for="{{days}}" 
+          wx:key="index"
+          class="day-item {{item.disabled ? 'disabled' : ''}} {{item.selected ? 'selected' : ''}} {{item.isToday ? 'today' : ''}} {{item.inRange ? 'in-range' : ''}}"
+          bindtap="onDayClick"
+          data-index="{{index}}"
+        >
+          <text class="day-text">{{item.day || ''}}</text>
+          <text wx:if="{{item.isToday}}" class="today-text">今天</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 时间选择 -->
+    <view class="time-section">
+      <view class="time-title">{{isSelectingReturn ? '还车时间' : '取车时间'}}</view>
+      <scroll-view 
+        scroll-y 
+        class="time-picker-wrapper"
+        show-scrollbar="{{false}}"
+      >
+        <view class="time-list">
+          <view 
+            wx:for="{{timeArray}}" 
+            wx:key="index"
+            class="time-item {{(isSelectingReturn ? returnTime : pickupTime) === item ? 'selected' : ''}}"
+            bindtap="onTimeSelect"
+            data-time="{{item}}"
+          >
+            {{item}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="bottom-buttons">
+      <view class="clear-btn" bindtap="onClear">清空</view>
+      <view class="confirm-btn" bindtap="onTimeConfirm">确定</view>
+    </view>
+  </view>
+</van-popup>
+
+<!-- 添加调试信息 -->
+<view wx:if="{{false}}">
+  <text>show: {{show}}</text>
+  <text>currentDate: {{currentDate}}</text>
+  <text>minDate: {{minDate}}</text>
+  <text>maxDate: {{maxDate}}</text>
+</view> 

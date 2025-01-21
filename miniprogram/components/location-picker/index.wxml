@@ -1,0 +1,51 @@
+<view class="location-picker {{ show ? 'show' : '' }}">
+  <view class="mask" bindtap="onClose"></view>
+  <view class="content">
+    <view class="header">
+      <text>选择取还车网点</text>
+      <text class="close" bindtap="onClose">×</text>
+    </view>
+
+    <block wx:if="{{currentCity}}">
+      <!-- 热门网点 -->
+      <view class="section">
+        <view class="title">热门网点</view>
+        <view class="location-list">
+          <view 
+            class="location-item"
+            wx:for="{{ hotLocations }}"
+            wx:key="id"
+            data-location="{{ item }}"
+            bindtap="onLocationSelect"
+          >
+            <view class="name">{{ item.name }}</view>
+            <view class="address">{{ item.address }}</view>
+            <view class="hot-tag" wx:if="{{ item.isHot }}">热门</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 全部网点 -->
+      <view class="section">
+        <view class="title">全部网点</view>
+        <view class="location-list">
+          <view 
+            class="location-item"
+            wx:for="{{ allLocations }}"
+            wx:key="id"
+            data-location="{{ item }}"
+            bindtap="onLocationSelect"
+          >
+            <view class="name">{{ item.name }}</view>
+            <view class="address">{{ item.address }}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="empty-state">
+        <text>请先选择城市</text>
+      </view>
+    </block>
+  </view>
+</view> 

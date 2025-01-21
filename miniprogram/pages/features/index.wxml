@@ -1,0 +1,86 @@
+<view class="container">
+  <!-- 产品优势 -->
+  <view class="section">
+    <view class="section-title">
+      <text class="dot">•</text>
+      <text>产品优势</text>
+    </view>
+    
+    <view class="feature-list">
+      <view class="feature-item">
+        <image src="/assets/icon/locations.png" class="feature-icon"></image>
+        <view class="feature-content">
+          <text class="title">网点多 覆盖广</text>
+          <text class="desc">覆盖城市400+ 网点6000+</text>
+        </view>
+      </view>
+
+      <view class="feature-item">
+        <image src="/assets/icon/self-service.png" class="feature-icon"></image>
+        <view class="feature-content">
+          <text class="title">自助取还</text>
+          <text class="desc">手机下单 无接触取还</text>
+        </view>
+      </view>
+
+      <view class="feature-item">
+        <image src="/assets/icon/deposit.png" class="feature-icon"></image>
+        <view class="feature-content">
+          <text class="title">押金双免</text>
+          <text class="desc">支付分650及以上有机会享</text>
+          <text class="sub-desc">（微信小程序预订）</text>
+        </view>
+      </view>
+
+      <view class="feature-item">
+        <image src="/assets/icon/flexible.png" class="feature-icon"></image>
+        <view class="feature-content">
+          <text class="title">多元化用车</text>
+          <text class="desc">短时用车选日租更灵活</text>
+          <text class="desc">长期用车选套餐更划算</text>
+        </view>
+      </view>
+
+      <view class="feature-item">
+        <image src="/assets/icon/service-24h.png" class="feature-icon"></image>
+        <view class="feature-content">
+          <text class="title">24小时客服</text>
+          <text class="desc">400 616 6666 客服随时在线</text>
+        </view>
+      </view>
+
+      <view class="feature-item">
+        <image src="/assets/icon/standard.png" class="feature-icon"></image>
+        <view class="feature-content">
+          <text class="title">标准化服务</text>
+          <text class="desc">全国统一服务标准 价格透明</text>
+        </view>
+      </view>
+
+      <view class="feature-item">
+        <image src="/assets/icon/return.png" class="feature-icon"></image>
+        <view class="feature-content">
+          <text class="title">异地还车</text>
+          <text class="desc">千家网点 便捷还车</text>
+          <text class="sub-desc">*覆盖全国所有网点，费用以订单详情页显示为准</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务理念 -->
+  <view class="section">
+    <view class="section-title">
+      <text class="dot">•</text>
+      <text>服务理念</text>
+    </view>
+    
+    <view class="service-concept">
+      <text class="concept-text">华子租车坚持以客户为本，颠覆繁琐的传统租车模式，为客户提供快速便捷的全新租车服务体验。</text>
+      <text class="concept-text">秉持"随时随地，随需而用"的服务理念，华子租车以推动绿色出行和新型汽车消费文化为己任，致力成为消费者首选的中国汽车租赁服务品牌。</text>
+    </view>
+  </view>
+
+  <!-- 返回按钮 -->
+  <button class="back-btn" bindtap="onBack">返回预订</button>
+</view>

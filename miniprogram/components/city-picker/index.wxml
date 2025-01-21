@@ -1,0 +1,60 @@
+<view class="city-picker {{ show ? 'show' : '' }}">
+  <view class="mask" bindtap="onClose"></view>
+  <view class="content">
+    <view class="header">
+      <text>选择城市</text>
+      <text class="close" bindtap="onClose">×</text>
+    </view>
+
+    <!-- 热门城市 -->
+    <view class="section">
+      <view class="title">热门城市</view>
+      <view class="hot-cities">
+        <view 
+          class="city-item" 
+          wx:for="{{ hotCities }}" 
+          wx:key="code"
+          data-city="{{ item }}"
+          bindtap="onCitySelect"
+        >
+          {{ item.name }}
+        </view>
+      </view>
+    </view>
+
+    <!-- 城市列表 -->
+    <scroll-view 
+      class="city-list" 
+      scroll-y 
+      scroll-into-view="{{ scrollIntoView }}"
+    >
+      <view class="letter-section" wx:for="{{ cityGroups }}" wx:for-index="letter" wx:key="letter" id="{{ letter }}">
+        <view class="letter">{{ letter }}</view>
+        <view class="cities">
+          <view 
+            class="city-item"
+            wx:for="{{ item }}"
+            wx:key="code"
+            data-city="{{ item }}"
+            bindtap="onCitySelect"
+          >
+            {{ item.name }}
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 字母导航 -->
+    <view class="letter-nav">
+      <view 
+        wx:for="{{ letters }}"
+        wx:key="*this"
+        class="letter-item"
+        data-letter="{{ item }}"
+        bindtap="onLetterTap"
+      >
+        {{ item }}
+      </view>
+    </view>
+  </view>
+</view> 

@@ -1,0 +1,49 @@
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user-info">
+    <image class="avatar" src="/assets/images/default-avatar.png" />
+    <view class="info">
+      <text class="nickname">点击登录</text>
+      <text class="tips">登录后享受更多权益</text>
+    </view>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="order-section">
+    <view class="section-title">我的订单</view>
+    <view class="order-types">
+      <view class="type-item">
+        <image src="/assets/icons/all.png" />
+        <text>全部订单</text>
+      </view>
+      <view class="type-item">
+        <image src="/assets/icons/pending.png" />
+        <text>待支付</text>
+      </view>
+      <view class="type-item">
+        <image src="/assets/icons/processing.png" />
+        <text>进行中</text>
+      </view>
+      <view class="type-item">
+        <image src="/assets/icons/completed.png" />
+        <text>已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="function-list">
+    <view class="function-item">
+      <text>我的优惠券</text>
+      <text class="arrow">></text>
+    </view>
+    <view class="function-item">
+      <text>我的积分</text>
+      <text class="arrow">></text>
+    </view>
+    <view class="function-item">
+      <text>设置</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+</view> 

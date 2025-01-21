@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "city-picker": "/components/city-picker/index",
+    "location-picker": "/components/location-picker/index",
+    "time-picker": "/components/time-picker/index"
+  }
+} 

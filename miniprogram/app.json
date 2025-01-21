@@ -1,0 +1,48 @@
+{
+	"pages": [
+	  "pages/index/index",
+	  "pages/help/help",
+	  "pages/mine/mine",
+	  "pages/features/index"
+	],
+	"window": {
+	  "backgroundTextStyle": "light",
+	  "navigationBarBackgroundColor": "#fff",
+	  "navigationBarTitleText": "华子租车",
+	  "navigationBarTextStyle": "black"
+	},
+	"tabBar": {
+	  "color": "#999999",
+	  "selectedColor": "#FFD700",
+	  "backgroundColor": "#ffffff",
+	  "list": [
+		{
+		  "pagePath": "pages/index/index",
+		  "text": "首页",
+		  "iconPath": "/assets/icon/home.png",
+		  "selectedIconPath": "/assets/icon/home-active.png"
+		},
+		{
+		  "pagePath": "pages/help/help",
+		  "text": "帮助",
+		  "iconPath": "/assets/icon/help.png",
+		  "selectedIconPath": "/assets/icon/help-active.png"
+		},
+		{
+		  "pagePath": "pages/mine/mine",
+		  "text": "我的",
+		  "iconPath": "/assets/icon/mine.png",
+		  "selectedIconPath": "/assets/icon/mine-active.png"
+		}
+	  ]
+	},
+	"usingComponents": {
+	  "city-picker": "./components/city-picker/index",
+	  "location-picker": "./components/location-picker/index"
+	},
+	"permission": {
+	  "scope.userLocation": {
+		"desc": "你的位置信息将用于获取最近的租车网点"
+	  }
+	}
+} 

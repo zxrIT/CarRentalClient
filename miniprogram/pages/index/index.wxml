@@ -1,0 +1,192 @@
+<view class="container">
+  <!-- 顶部轮播图 -->
+  <view class="swiper-container">
+    <swiper class="banner" 
+      indicator-dots 
+      autoplay 
+      circular
+      interval="4000"
+      duration="500"
+    >
+      <swiper-item>
+        <image src="/assets/images/banner1.png" mode="aspectFill"></image>
+        <view class="banner-content">
+          <view class="banner-title">168元租车天天特惠</view>
+          <view class="banner-desc">自驾游玩冰雪世界</view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <image src="/assets/images/banner2.png" mode="aspectFill"></image>
+        <view class="banner-content">
+          <view class="banner-title">新人专享优惠</view>
+          <view class="banner-desc">首单立减100元</view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <image src="/assets/images/banner3.png" mode="aspectFill"></image>
+        <view class="banner-content">
+          <view class="banner-title">春节租车优惠</view>
+          <view class="banner-desc">提前预订享特惠</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 安全提示栏 -->
+  <view class="safety-bar">
+    <text>100%全匹配·用车安心</text>
+    <text class="arrow">></text>
+  </view>
+
+  <!-- 主要内容区 -->
+  <view class="main-content">
+    <!-- 顶部选择区域 -->
+    <view class="select-section">
+      <!-- 取车信息 -->
+      <view class="location-info">
+        <view class="city-select" bindtap="handleCityClick" data-type="pickup">
+          <text class="label">取车城市</text>
+          <view class="value-with-arrow">
+            <text class="value">{{pickupCityName || '请选择'}}</text>
+            <text class="arrow">▼</text>
+          </view>
+        </view>
+        <view class="location-select" bindtap="handleLocationSelect" data-type="pickup">
+          <text class="label">取车网点</text>
+          <view class="value-with-arrow">
+            <text class="value">{{pickupLocation || '请选择取车网点'}}</text>
+            <text class="arrow">▼</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 异地还车开关 -->
+      <view class="return-different">
+        <text class="label">异地还车</text>
+        <view class="right-content">
+          <switch 
+            class="switch" 
+            checked="{{isReturnDifferentCity}}" 
+            bindchange="onReturnDifferentCityChange" 
+            color="#FFC508"
+          />
+          <text class="distance" wx:if="{{isReturnDifferentCity && distance}}">{{distance}}</text>
+        </view>
+      </view>
+
+      <!-- 还车信息 -->
+      <view class="location-info" wx:if="{{isReturnDifferentCity}}">
+        <view class="city-select" bindtap="handleCityClick" data-type="return">
+          <text class="label">还车城市</text>
+          <view class="value-with-arrow">
+            <text class="value">{{returnCityName || '请选择'}}</text>
+            <text class="arrow">▼</text>
+          </view>
+        </view>
+        <view class="location-select" bindtap="handleLocationSelect" data-type="return">
+          <text class="label">还车网点</text>
+          <view class="value-with-arrow">
+            <text class="value">{{returnLocation || '请选择还车网点'}}</text>
+            <text class="arrow">▼</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 时间选择区域 -->
+    <view class="time-section">
+      <view class="time-row" bindtap="handleTimeSelect" data-type="pickup">
+        <view class="time-label">取车时间</view>
+        <view class="time-value" wx:if="{{pickupTime}}">
+          <text>{{pickupTime}}</text>
+          <text class="week-day">周{{pickupWeekDay}}</text>
+        </view>
+        <view class="time-value placeholder" wx:else>请选择取车时间</view>
+      </view>
+      <view class="duration" wx:if="{{duration > 0}}">
+        <text>共 {{duration}} 天</text>
+      </view>
+      <view class="time-row" bindtap="handleTimeSelect" data-type="return">
+        <view class="time-label">还车时间</view>
+        <view class="time-value" wx:if="{{returnTime}}">
+          <text>{{returnTime}}</text>
+          <text class="week-day">周{{returnWeekDay}}</text>
+        </view>
+        <view class="time-value placeholder" wx:else>请选择还车时间</view>
+      </view>
+    </view>
+
+    <!-- 上门服务选项 -->
+    <view class="service-option">
+      <checkbox class="checkbox" />
+      <text>上门送取车</text>
+    </view>
+
+    <!-- 特惠提示 -->
+    <view class="discount-notice">
+      <text class="tag">异地特惠</text>
+      <text>{{pickupCityName || '当前城市'}}出发异地还车费，限时特惠 0 元起</text>
+    </view>
+
+    <!-- 选车按钮 -->
+    <button class="select-btn">立即选车</button>
+
+    <!-- 服务特点展示 -->
+    <view class="service-features">
+      <view class="feature-header">
+        <text class="title">自由出发 自在华子</text>
+        <text class="view-all" bindtap="handleViewAll">查看全部 ></text>
+      </view>
+      <view class="feature-list">
+        <view class="feature-item">
+          <image src="/assets/icons/zero-touch.png" mode="aspectFit" class="feature-icon"></image>
+          <text class="feature-name">零接触</text>
+          <text class="feature-desc">自助取还车辆</text>
+        </view>
+        <view class="feature-item">
+          <image src="/assets/icons/payment.png" mode="aspectFit" class="feature-icon"></image>
+          <text class="feature-name">支付分 免押金</text>
+          <text class="feature-desc">650分及以上有机会享</text>
+        </view>
+        <view class="feature-item">
+          <image src="/assets/icons/service.png" mode="aspectFit" class="feature-icon"></image>
+          <text class="feature-name">24小时客服</text>
+          <text class="feature-desc">专业服务随时在线</text>
+        </view>
+      </view>
+      <view class="service-guarantee">
+        <text>100%全匹配·用车安心</text>
+        <view class="guarantee-items">
+          <text>便捷取还</text>
+          <text class="divider">|</text>
+          <text>费用透明</text>
+          <text class="divider">|</text>
+          <text>押金可免</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 城市选择器组件 -->
+  <city-picker 
+    show="{{ showCityPicker }}" 
+    bind:close="onCityPickerClose"
+    bind:select="onCitySelect"
+  />
+
+  <!-- 网点选择器组件 -->
+  <location-picker 
+    show="{{ showLocationPicker }}" 
+    cityName="{{ pickingReturnLocation ? returnCityName : pickupCityName }}"
+    bind:close="onLocationPickerClose"
+    bind:select="onLocationSelect"
+  />
+
+  <!-- 添加时间选择器组件 -->
+  <time-picker 
+    show="{{ showTimePicker }}"
+    type="{{ pickingReturnTime ? 'return' : 'pickup' }}"
+    bind:close="onTimePickerClose"
+    bind:confirm="onTimeSelect"
+  />
+</view> 

@@ -1,0 +1,16 @@
+.help-list {
+  background-color: #fff;
+  padding: 0 30rpx;
+}
+
+.help-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.arrow {
+  color: #999;
+} 

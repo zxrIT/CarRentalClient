@@ -1,0 +1,170 @@
+.city-picker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  visibility: hidden;
+}
+
+.city-picker.show {
+  visibility: visible;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  max-height: 85vh;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.show .content {
+  transform: translateY(0);
+}
+
+.header {
+  padding: 30rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-bottom: 1rpx solid #eee;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  font-size: 40rpx;
+  color: #999;
+}
+
+.section {
+  padding: 20rpx;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #999;
+  padding: 20rpx;
+}
+
+/* 热门城市样式 */
+.hot-cities {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 10rpx;
+}
+
+.hot-cities .city-item {
+  width: calc(33.33% - 20rpx);  /* 改为每行3个，减去margin */
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  background: #f5f5f5;
+  border-radius: 32rpx;
+  margin: 10rpx;
+  font-size: 28rpx;
+}
+
+/* 城市列表样式 */
+.city-list {
+  height: calc(85vh - 300rpx);
+  padding: 0 20rpx;
+  padding-right: 80rpx;  /* 为右侧字母导航留出空间 */
+}
+
+.letter-section {
+  margin-bottom: 30rpx;
+}
+
+.letter {
+  font-size: 28rpx;
+  color: #999;
+  padding: 10rpx 0;
+  background: #f8f8f8;
+  padding-left: 20rpx;
+}
+
+/* 修改城市列表为每行3个 */
+.letter-section .cities {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20rpx 10rpx;
+  margin-right: 40rpx;  /* 为右侧字母导航留出空间 */
+}
+
+.letter-section .city-item {
+  width: calc(33.33% - 20rpx);  /* 每行3个城市，减去margin */
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  background: #f5f5f5;
+  border-radius: 32rpx;
+  margin: 10rpx;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+
+/* 统一的城市项样式 */
+.city-item {
+  width: calc(33.33% - 20rpx);
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  background: #f5f5f5;
+  border-radius: 32rpx;
+  margin: 10rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 激活状态样式 */
+.city-item:active {
+  background: #f0f0f0;
+}
+
+/* 字母导航样式 */
+.letter-nav {
+  position: fixed;
+  right: 30rpx;  /* 调整位置，远离右边缘 */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 30rpx;
+  padding: 10rpx 6rpx;  /* 调整内边距 */
+  z-index: 1001;  /* 确保在最上层 */
+}
+
+.letter-item {
+  font-size: 24rpx;
+  color: #fff;
+  width: 36rpx;  /* 稍微减小宽度 */
+  height: 36rpx;  /* 稍微减小高度 */
+  line-height: 36rpx;
+  text-align: center;
+  margin: 2rpx 0;  /* 添加垂直间距 */
+}
+
+.letter-item.active {
+  color: #FF0000;
+  font-weight: bold;
+} 
