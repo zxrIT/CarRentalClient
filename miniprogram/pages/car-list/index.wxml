@@ -1,0 +1,59 @@
+<view class="container">
+  <!-- 顶部时间信息 -->
+  <view class="time-info">
+    <text>{{timeRange}}</text>
+    <view class="edit-btn" bindtap="onEditTime">
+      <image src="/assets/icons/edit.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-item {{currentFilter === 'all' ? 'active' : ''}}">
+      <text>综合排序</text>
+    </view>
+    <view class="filter-item {{currentFilter === 'brand' ? 'active' : ''}}">
+      <text>品牌</text>
+      <image class="arrow" src="/assets/icons/arrow-down.png" mode="aspectFit"></image>
+    </view>
+    <view class="filter-item {{currentFilter === 'price' ? 'active' : ''}}">
+      <text>价格</text>
+      <image class="arrow" src="/assets/icons/arrow-down.png" mode="aspectFit"></image>
+    </view>
+    <view class="filter-item {{currentFilter === 'more' ? 'active' : ''}}">
+      <text>更多</text>
+      <image class="arrow" src="/assets/icons/arrow-down.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 快捷标签 -->
+  <scroll-view class="tags" scroll-x>
+    <view class="tag">雪地胎</view>
+    <view class="tag">倒车影像</view>
+    <view class="tag">倒车雷达</view>
+    <view class="tag">蓝牙连接</view>
+  </scroll-view>
+
+  <!-- 车型列表 -->
+  <scroll-view class="car-list" scroll-y>
+    <view class="car-item" wx:for="{{cars}}" wx:key="id">
+      <image class="car-image" src="{{item.image}}" mode="aspectFit"></image>
+      <view class="car-info">
+        <view class="car-name">{{item.name}}</view>
+        <view class="car-desc">{{item.desc}}</view>
+        <view class="car-tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+        </view>
+        <view class="car-features">
+          <text class="feature" wx:for="{{item.features}}" wx:key="*this">{{item}}</text>
+        </view>
+      </view>
+      <view class="car-price">
+        <text class="unit">¥</text>
+        <text class="amount">{{item.price}}</text>
+        <text class="day">/日均</text>
+        <view class="book-btn">整单{{item.price * 3}}元起</view>
+      </view>
+    </view>
+  </scroll-view>
+</view> 
