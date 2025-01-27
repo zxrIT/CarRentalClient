@@ -1,0 +1,186 @@
+.mine-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+/* 用户信息区域 */
+.user-section {
+  background: #ffffff;
+  padding: 40rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-right: 30rpx;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 36rpx;
+  color: #333333;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.phone {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.login-text {
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.arrow {
+  font-size: 32rpx;
+  color: #999999;
+  margin-left: 20rpx;
+}
+
+/* 点击效果 */
+.user-section:active {
+  background: #f8f8f8;
+}
+
+/* 快捷入口 */
+.quick-entry {
+  background: #ffffff;
+  padding: 30rpx 0;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
+}
+
+.entry-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entry-item image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 12rpx;
+}
+
+.entry-item text {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+/* 标题样式 */
+.section-title {
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: 500;
+  padding: 30rpx 40rpx 20rpx;
+}
+
+/* 订单区域 */
+.order-section {
+  background: #ffffff;
+  padding: 30rpx 0;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
+}
+
+.order-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-item image {
+  width: 56rpx;
+  height: 56rpx;
+  margin-bottom: 12rpx;
+}
+
+.order-item text {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+/* 推广区域 */
+.promo-section {
+  margin-bottom: 20rpx;
+}
+
+.promo-item {
+  background: #ffffff;
+  padding: 30rpx 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rpx;
+}
+
+.promo-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.promo-title {
+  font-size: 30rpx;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.promo-desc {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.promo-icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+/* 服务区域 */
+.service-section {
+  background: #ffffff;
+  padding: 30rpx 20rpx;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-item image {
+  width: 56rpx;
+  height: 56rpx;
+  margin-bottom: 12rpx;
+}
+
+.service-item text {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+/* 底部广告 */
+.footer-ad {
+  padding: 0 40rpx;
+  margin-top: 40rpx;
+}
+
+.footer-ad image {
+  width: 100%;
+  border-radius: 12rpx;
+} 

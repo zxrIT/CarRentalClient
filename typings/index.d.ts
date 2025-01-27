@@ -2,8 +2,10 @@
 
 interface IAppOption {
   globalData: {
-    // 定义全局数据类型
+    isLogin: boolean;
+    userInfo: WechatMiniprogram.UserInfo | null;
   }
+  checkLoginStatus: () => Promise<boolean>;
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback
 }
 

@@ -1,58 +1,247 @@
 <view class="container">
   <!-- 顶部时间信息 -->
-  <view class="time-info">
-    <text>{{timeRange}}</text>
-    <view class="edit-btn" bindtap="onEditTime">
-      <image src="/assets/icons/edit.png" mode="aspectFit"></image>
+  <view class="time-card">
+    <view class="time-info">
+      <text>{{location}}</text>
+      <text>{{pickupTime}} - {{returnTime}}</text>
+    </view>
+    <image class="edit-icon" src="/assets/icons/edit.png" mode="aspectFit" bindtap="onEditTime"></image>
+  </view>
+
+  <!-- 筛选栏容器 -->
+  <view class="filter-container">
+    <!-- 筛选栏 -->
+    <view class="filter-bar">
+      <view class="filter-item {{currentFilter === 'sort' ? 'active' : ''}}" bindtap="onFilterTap" data-type="sort">
+        <text>{{sortType === 'default' ? '综合排序' : sortType === 'lowToHigh' ? '低价优先' : '高价优先'}}</text>
+        <text class="arrow">▼</text>
+      </view>
+      <view class="filter-item {{currentFilter === 'brand' ? 'active' : ''}}" bindtap="onFilterTap" data-type="brand">
+        <text>{{selectedBrand || '品牌'}}</text>
+        <text class="arrow">▼</text>
+      </view>
+      <view class="filter-item {{currentFilter === 'price' ? 'active' : ''}}" bindtap="onFilterTap" data-type="price">
+        <text>{{selectedPrice || '价格'}}</text>
+        <text class="arrow">▼</text>
+      </view>
+      <view class="filter-item {{currentFilter === 'more' ? 'active' : ''}}" bindtap="onFilterTap" data-type="more">
+        <text>更多</text>
+        <text class="arrow">▼</text>
+      </view>
     </view>
   </view>
 
-  <!-- 筛选栏 -->
-  <view class="filter-bar">
-    <view class="filter-item {{currentFilter === 'all' ? 'active' : ''}}">
-      <text>综合排序</text>
+  <!-- 下拉菜单蒙层容器 -->
+  <view class="dropdown-container {{currentFilter ? 'show' : ''}}">
+    <view class="dropdown-mask" bindtap="onCloseFilter"></view>
+    
+    <!-- 排序下拉菜单 -->
+    <view class="filter-dropdown {{currentFilter === 'sort' ? 'show' : ''}}">
+      <view class="dropdown-content">
+        <view class="dropdown-item {{sortType === 'default' ? 'active' : ''}}" bindtap="onSortSelect" data-type="default">
+          <text>综合排序</text>
+          <text class="check" wx:if="{{sortType === 'default'}}">✓</text>
+        </view>
+        <view class="dropdown-item {{sortType === 'lowToHigh' ? 'active' : ''}}" bindtap="onSortSelect" data-type="lowToHigh">
+          <text>低价优先</text>
+          <text class="check" wx:if="{{sortType === 'lowToHigh'}}">✓</text>
+        </view>
+        <view class="dropdown-item {{sortType === 'highToLow' ? 'active' : ''}}" bindtap="onSortSelect" data-type="highToLow">
+          <text>高价优先</text>
+          <text class="check" wx:if="{{sortType === 'highToLow'}}">✓</text>
+        </view>
+      </view>
     </view>
-    <view class="filter-item {{currentFilter === 'brand' ? 'active' : ''}}">
-      <text>品牌</text>
-      <image class="arrow" src="/assets/icons/arrow-down.png" mode="aspectFit"></image>
+
+    <!-- 品牌下拉菜单 -->
+    <view class="filter-dropdown {{currentFilter === 'brand' ? 'show' : ''}}">
+      <view class="dropdown-content brand-content">
+        <!-- 品牌选择区域 -->
+        <view class="brand-list">
+          <view class="brand-item {{brandType === 'all' ? 'active' : ''}}" bindtap="onBrandSelect" data-type="all">
+            <text>不限</text>
+            <text class="check" wx:if="{{brandType === 'all'}}">✓</text>
+          </view>
+          <view class="brand-item {{brandType === item.name ? 'active' : ''}}" 
+                wx:for="{{brands}}" 
+                wx:key="name" 
+                bindtap="onBrandSelect" 
+                data-type="{{item.name}}">
+            <text>{{item.name}}</text>
+            <text class="check" wx:if="{{brandType === item.name}}">✓</text>
+          </view>
+        </view>
+        <!-- 底部按钮 -->
+        <view class="filter-buttons">
+          <view class="reset-btn" bindtap="onReset">重置</view>
+          <view class="confirm-btn" bindtap="onConfirm">确定 (11款车型)</view>
+        </view>
+      </view>
     </view>
-    <view class="filter-item {{currentFilter === 'price' ? 'active' : ''}}">
-      <text>价格</text>
-      <image class="arrow" src="/assets/icons/arrow-down.png" mode="aspectFit"></image>
+
+    <!-- 价格下拉菜单 -->
+    <view class="filter-dropdown {{currentFilter === 'price' ? 'show' : ''}}">
+      <view class="dropdown-content price-content">
+        <!-- 价格选择区域 -->
+        <view class="price-list">
+          <view class="price-item {{priceRange === 'all' ? 'active' : ''}}" 
+                bindtap="onPriceSelect" 
+                data-range="all">
+            <text>不限</text>
+            <text class="check" wx:if="{{priceRange === 'all'}}">✓</text>
+          </view>
+          <view class="price-item {{priceRange === '0-200' ? 'active' : ''}}" 
+                bindtap="onPriceSelect" 
+                data-range="0-200">
+            <text>0-200</text>
+            <text class="check" wx:if="{{priceRange === '0-200'}}">✓</text>
+          </view>
+          <view class="price-item {{priceRange === '200-300' ? 'active' : ''}}" 
+                bindtap="onPriceSelect" 
+                data-range="200-300">
+            <text>200-300</text>
+            <text class="check" wx:if="{{priceRange === '200-300'}}">✓</text>
+          </view>
+          <view class="price-item {{priceRange === '300-500' ? 'active' : ''}}" 
+                bindtap="onPriceSelect" 
+                data-range="300-500">
+            <text>300-500</text>
+            <text class="check" wx:if="{{priceRange === '300-500'}}">✓</text>
+          </view>
+          <view class="price-item {{priceRange === '500+' ? 'active' : ''}}" 
+                bindtap="onPriceSelect" 
+                data-range="500+">
+            <text>500以上</text>
+            <text class="check" wx:if="{{priceRange === '500+'}}">✓</text>
+          </view>
+        </view>
+        <!-- 底部按钮 -->
+        <view class="filter-buttons">
+          <view class="reset-btn" bindtap="onPriceReset">重置</view>
+          <view class="confirm-btn" bindtap="onPriceConfirm">确定 (11款车型)</view>
+        </view>
+      </view>
     </view>
-    <view class="filter-item {{currentFilter === 'more' ? 'active' : ''}}">
-      <text>更多</text>
-      <image class="arrow" src="/assets/icons/arrow-down.png" mode="aspectFit"></image>
+
+    <!-- 更多下拉菜单 -->
+    <view class="filter-dropdown {{currentFilter === 'more' ? 'show' : ''}}">
+      <view class="dropdown-content more-content">
+        <!-- 能源类型 -->
+        <view class="more-section">
+          <view class="section-title">能源类型</view>
+          <view class="more-list">
+            <view class="more-item {{energyType === 'all' ? 'active' : ''}}" 
+                  bindtap="onEnergySelect" 
+                  data-type="all">
+              <text>不限</text>
+              <text class="check" wx:if="{{energyType === 'all'}}">✓</text>
+            </view>
+            <view class="more-item {{energyType === 'gas' ? 'active' : ''}}" 
+                  bindtap="onEnergySelect" 
+                  data-type="gas">
+              <text>汽油</text>
+              <text class="check" wx:if="{{energyType === 'gas'}}">✓</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 车型配置 -->
+        <view class="more-section">
+          <view class="section-title">车型配置</view>
+          <view class="more-list">
+            <view class="more-item {{item.selected ? 'active' : ''}}" 
+                  wx:for="{{carFeatures}}" 
+                  wx:key="name"
+                  bindtap="onFeatureSelect" 
+                  data-index="{{index}}">
+              <text>{{item.name}}</text>
+              <text class="check" wx:if="{{item.selected}}">✓</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 座位数 -->
+        <view class="more-section">
+          <view class="section-title">座位数</view>
+          <view class="more-list">
+            <view class="more-item {{seatsType === 'all' ? 'active' : ''}}" 
+                  bindtap="onSeatsSelect" 
+                  data-type="all">
+              <text>不限</text>
+              <text class="check" wx:if="{{seatsType === 'all'}}">✓</text>
+            </view>
+            <view class="more-item {{seatsType === '5' ? 'active' : ''}}" 
+                  bindtap="onSeatsSelect" 
+                  data-type="5">
+              <text>5座</text>
+              <text class="check" wx:if="{{seatsType === '5'}}">✓</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 底部按钮 -->
+        <view class="filter-buttons">
+          <view class="reset-btn" bindtap="onMoreReset">重置</view>
+          <view class="confirm-btn" bindtap="onMoreConfirm">确定 (11款车型)</view>
+        </view>
+      </view>
     </view>
   </view>
 
   <!-- 快捷标签 -->
   <scroll-view class="tags" scroll-x>
-    <view class="tag">雪地胎</view>
-    <view class="tag">倒车影像</view>
-    <view class="tag">倒车雷达</view>
-    <view class="tag">蓝牙连接</view>
+    <view class="tag {{item.selected ? 'active' : ''}}" 
+          wx:for="{{quickTags}}" 
+          wx:key="name"
+          bindtap="onQuickTagTap" 
+          data-index="{{index}}">
+      <text>{{item.name}}</text>
+    </view>
   </scroll-view>
+
+  <!-- 用车安心 -->
+  <view class="service-banner">
+    <view class="service-title">用车安心</view>
+    <view class="service-items">
+      <view class="service-item">定期养护</view>
+      <view class="service-item">单单验车</view>
+      <view class="service-item">
+        <image src="/assets/icons/check.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
 
   <!-- 车型列表 -->
   <scroll-view class="car-list" scroll-y>
-    <view class="car-item" wx:for="{{cars}}" wx:key="id">
+    <!-- 车型分类 -->
+    <view class="car-category">
+      <view class="category-name">全部车型</view>
+      <view class="category-count">11款可租</view>
+    </view>
+
+    <!-- 车型列表项 -->
+    <view class="car-item {{item.showDetail ? 'show-detail' : ''}}" 
+          wx:for="{{cars}}" 
+          wx:key="id" 
+          bindtap="onCarItemTap" 
+          data-index="{{index}}">
+      <view class="car-tag" wx:if="{{item.tags.includes('雪地胎')}}">雪地胎</view>
       <image class="car-image" src="{{item.image}}" mode="aspectFit"></image>
-      <view class="car-info">
+      <view class="car-info" catch:tap>
         <view class="car-name">{{item.name}}</view>
         <view class="car-desc">{{item.desc}}</view>
-        <view class="car-tags">
-          <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
-        </view>
         <view class="car-features">
           <text class="feature" wx:for="{{item.features}}" wx:key="*this">{{item}}</text>
         </view>
       </view>
-      <view class="car-price">
-        <text class="unit">¥</text>
-        <text class="amount">{{item.price}}</text>
-        <text class="day">/日均</text>
-        <view class="book-btn">整单{{item.price * 3}}元起</view>
+      <view class="car-price" catch:tap>
+        <view class="price-info">
+          <text class="unit">¥</text>
+          <text class="amount">{{item.price}}</text>
+          <text class="day">/日均</text>
+        </view>
+        <view class="pickup-time">17:30可取</view>
+        <view class="book-btn" bindtap="onBookCar" data-car="{{item}}">{{isLogin ? '立即预订' : '登录并下单'}}</view>
       </view>
     </view>
   </scroll-view>

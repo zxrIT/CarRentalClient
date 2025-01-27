@@ -129,7 +129,7 @@
     </view>
 
     <!-- 选车按钮 -->
-    <button class="select-btn">立即选车</button>
+    <button class="select-btn" bindtap="onSelectCar">立即选车</button>
 
     <!-- 服务特点展示 -->
     <view class="service-features">

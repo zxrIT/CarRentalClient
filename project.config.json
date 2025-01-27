@@ -14,7 +14,7 @@
     },
     "bundle": false,
     "userConfirmedBundleSwitch": false,
-    "urlCheck": true,
+    "urlCheck": false,
     "scopeDataCheck": false,
     "coverView": true,
     "es6": true,
@@ -45,6 +45,11 @@
     "skylineRenderEnable": false,
     "qqmap": {
       "key": "YOUR_KEY"
+    },
+    "httpRequest": {
+      "allowDomains": [
+        "localhost:8080"
+      ]
     }
   },
   "simulatorType": "wechat",

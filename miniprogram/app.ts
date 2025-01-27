@@ -1,14 +1,37 @@
 interface IGlobalData {
-  // 定义全局数据的类型
+  isLogin: boolean;
+  userInfo: WechatMiniprogram.UserInfo | null;
 }
 
 App<{
-  globalData: IGlobalData
+  globalData: IGlobalData;
+  checkLoginStatus: () => Promise<boolean>;
 }>({
-  onLaunch() {
-    // 小程序启动时执行
-  },
   globalData: {
-    // 全局数据
+    isLogin: false,
+    userInfo: null
+  },
+
+  async checkLoginStatus(): Promise<boolean> {
+    try {
+      const token = wx.getStorageSync('token');
+      if (!token) {
+        this.globalData.isLogin = false;
+        return false;
+      }
+
+      // TODO: 验证 token 有效性
+      this.globalData.isLogin = true;
+      return true;
+    } catch (error) {
+      console.error('检查登录状态失败:', error);
+      this.globalData.isLogin = false;
+      return false;
+    }
+  },
+
+  onLaunch() {
+    // 启动时检查登录状态
+    this.checkLoginStatus();
   }
 }) 

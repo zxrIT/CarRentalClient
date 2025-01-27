@@ -33,7 +33,27 @@ interface ITimePickerProps {
   minTime: number;
 }
 
-Component<ITimePickerData, ITimePickerProps>({
+interface IComponentData {
+  show: boolean;
+  days: Array<{
+    day: number;
+    disabled: boolean;
+    selected: boolean;
+    inRange: boolean;
+  }>;
+  pickupDate: string;
+  pickupTime: string;
+  pickupWeekDay: string;
+  returnDate: string;
+  returnTime: string;
+  returnWeekDay: string;
+  duration: number;
+  isSelectingReturn: boolean;
+  timeArray: string[];
+  showTime: boolean;
+}
+
+Component<IComponentData>({
   properties: {
     show: {
       type: Boolean,
@@ -42,42 +62,26 @@ Component<ITimePickerData, ITimePickerProps>({
     type: {
       type: String,
       value: 'pickup'
-    },
-    currentTime: {
-      type: String,
-      value: ''
-    },
-    minTime: {
-      type: Number,
-      value: 0
     }
   },
 
   data: {
-    currentDate: new Date().getTime(),
-    minDate: new Date().getTime(),
-    maxDate: new Date().getTime() + 30 * 24 * 60 * 60 * 1000,
-    showCalendar: false,
-    showTime: false,
-    selectedDate: '',
-    selectedTime: '14:30',
-    timeArray: [
-      '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-      '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',
-      '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
-      '20:00'
-    ],
-    duration: 2,
     days: [],
-    currentMonth: '',
-    weekDay: '',
     pickupDate: '',
     pickupTime: '14:30',
     pickupWeekDay: '',
     returnDate: '',
     returnTime: '14:30',
     returnWeekDay: '',
-    isSelectingReturn: false
+    duration: 0,
+    isSelectingReturn: false,
+    timeArray: [
+      '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+      '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',
+      '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
+      '20:00', '20:30', '21:00', '21:30', '22:00'
+    ],
+    showTime: false
   },
 
   observers: {
@@ -234,32 +238,25 @@ Component<ITimePickerData, ITimePickerProps>({
 
     onTimeSelect(e: any) {
       const selectedTime = e.currentTarget.dataset.time;
+      
       if (this.data.isSelectingReturn) {
-        // 更新还车时间
+        // 检查是否晚于取车时间
         const pickupTimestamp = this.getTimestamp(`${this.data.pickupDate} ${this.data.pickupTime}`);
         const returnTimestamp = this.getTimestamp(`${this.data.returnDate} ${selectedTime}`);
         
-        if (returnTimestamp <= pickupTimestamp) {
+        if (pickupTimestamp && returnTimestamp && returnTimestamp <= pickupTimestamp) {
           wx.showToast({
             title: '还车时间必须晚于取车时间',
             icon: 'none'
           });
           return;
         }
-
-        // 计算租期（不足一天按一天计算）
-        const duration = Math.ceil((returnTimestamp - pickupTimestamp) / (24 * 60 * 60 * 1000));
-        
-        this.setData({
-          returnTime: selectedTime,
-          duration: Math.max(1, duration) // 确保最小为1天
-        });
-      } else {
-        // 更新取车时间
-        this.setData({
-          pickupTime: selectedTime
-        });
       }
+
+      this.setData({
+        [this.data.isSelectingReturn ? 'returnTime' : 'pickupTime']: selectedTime,
+        showTime: false
+      });
     },
 
     onTimeConfirm() {
@@ -296,9 +293,9 @@ Component<ITimePickerData, ITimePickerProps>({
       });
 
       this.setData({
-        showTime: false
+        show: false
       });
-    },
+     },
 
     onClear() {
       this.setData({
@@ -357,6 +354,18 @@ Component<ITimePickerData, ITimePickerProps>({
       }
       this.setData({
         isSelectingReturn: true
+      });
+    },
+
+    showTimeSelect() {
+      this.setData({
+        showTime: true
+      });
+    },
+
+    hideTimeSelect() {
+      this.setData({
+        showTime: false
       });
     }
   }

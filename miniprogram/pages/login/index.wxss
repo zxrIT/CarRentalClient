@@ -1,0 +1,130 @@
+.login-container {
+  min-height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+/* Logo区域 */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 160rpx;
+  margin-bottom: 120rpx;
+}
+
+.logo {
+  width: 140rpx;
+  height: 140rpx;
+  margin-bottom: 40rpx;
+  border-radius: 50%;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.hint {
+  font-size: 28rpx;
+  color: #999999;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* 登录区域 */
+.login-section {
+  margin-bottom: 80rpx;
+}
+
+.phone-login-btn {
+  width: 100%;
+  height: 96rpx;
+  background: #FFD700;
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+  border: none;
+  box-shadow: 0 4rpx 12rpx rgba(255, 215, 0, 0.3);
+}
+
+.phone-login-btn image {
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 16rpx;
+}
+
+.phone-login-btn text {
+  line-height: 96rpx;
+}
+
+.phone-login-btn-hover {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(255, 215, 0, 0.2);
+}
+
+.switch-phone {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666666;
+  padding: 20rpx;
+}
+
+/* 协议区域 */
+.agreement-section {
+  margin-top: auto;
+  padding: 40rpx 0;
+}
+
+.agreement-label {
+  display: flex;
+  align-items: flex-start;
+}
+
+.agreement-text {
+  font-size: 24rpx;
+  color: #999999;
+  margin-left: 12rpx;
+  line-height: 1.6;
+}
+
+.agreement-text .link {
+  color: #FFD700;
+  display: inline;
+  margin: 0 4rpx;
+}
+
+/* 底部区域 */
+.bottom-section {
+  text-align: center;
+  padding: 40rpx 0;
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.skip-btn {
+  font-size: 28rpx;
+  color: #999999;
+  padding: 20rpx 40rpx;
+}
+
+/* 复选框样式调整 */
+checkbox .wx-checkbox-input {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 6rpx;
+  border-color: #E5E5E5;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #FFD700;
+  border-color: #FFD700;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  color: #333333;
+  font-size: 24rpx;
+} 

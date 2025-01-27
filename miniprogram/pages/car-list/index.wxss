@@ -1,34 +1,69 @@
-.container {
-  min-height: 100vh;
+page {
   background: #f8f8f8;
 }
 
-.time-info {
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 84rpx;
+}
+
+/* 顶部时间卡片 */
+.time-card {
+  margin: 20rpx;
+  padding: 20rpx 30rpx;
+  background: #FFF8E6;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20rpx 30rpx;
-  background: #FFF8E6;
+  border: 1rpx solid #FFE4B5;
+}
+
+.time-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.time-info text {
   color: #333;
   font-size: 28rpx;
+  line-height: 1.5;
 }
 
-.edit-btn {
-  width: 40rpx;
-  height: 40rpx;
-  padding: 10rpx;
+.time-info text:first-child {
+  font-weight: 500;
+  margin-bottom: 8rpx;
 }
 
-.edit-btn image {
-  width: 100%;
-  height: 100%;
+.edit-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 20rpx;
+  flex-shrink: 0;
 }
 
+/* 筛选栏容器 */
+.filter-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 101;
+  background: #fff;
+}
+
+/* 筛选栏 */
 .filter-bar {
   display: flex;
-  background: #fff;
-  padding: 20rpx 0;
+  height: 84rpx;
+  align-items: center;
   border-bottom: 1rpx solid #f5f5f5;
+  position: relative;
 }
 
 .filter-item {
@@ -41,126 +76,608 @@
 }
 
 .filter-item.active {
-  color: #333;
+  color: #0066ff;
+}
+
+/* 选中状态的文字样式 */
+.filter-item text {
+  max-width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 已选中状态的样式（品牌和价格通用） */
+.filter-item:not(.active) text:first-child {
+  color: #A66C04;
   font-weight: 500;
 }
 
 .arrow {
-  width: 24rpx;
-  height: 24rpx;
-  margin-left: 4rpx;
+  font-size: 20rpx;
+  margin-left: 8rpx;
+  color: #999;
+  transition: transform 0.3s;
 }
 
+.filter-item.active .arrow {
+  color: #0066ff;
+  transform: rotate(180deg);
+}
+
+/* 下拉菜单蒙层容器 */
+.dropdown-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 84rpx;
+  z-index: 100;
+  display: none;
+}
+
+.dropdown-container.show {
+  display: block;
+}
+
+.dropdown-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+/* 下拉菜单 */
+.filter-dropdown {
+  position: relative;
+  background: #fff;
+  display: none;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.filter-dropdown.show {
+  display: block;
+}
+
+.dropdown-content {
+  background: #fff;
+  max-height: 400rpx;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 40rpx;
+  font-size: 28rpx;
+  color: #333;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item.active {
+  color: #0066ff;
+}
+
+.dropdown-item .check {
+  color: #0066ff;
+}
+
+/* 重置和确定按钮 */
+.filter-buttons {
+  display: flex;
+  padding: 20rpx;
+  background: #fff;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.reset-btn, .confirm-btn {
+  flex: 1;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+}
+
+.reset-btn {
+  background: #f5f5f5;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.confirm-btn {
+  background: #ffd700;
+  color: #333;
+}
+
+/* 快捷标签 */
 .tags {
   padding: 20rpx;
   white-space: nowrap;
   background: #fff;
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
 }
 
 .tag {
-  display: inline-block;
-  padding: 12rpx 24rpx;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56rpx;
+  padding: 0 24rpx;
   margin-right: 16rpx;
-  background: #f5f5f5;
+  background: #f8f8f8;
   color: #666;
   font-size: 26rpx;
-  border-radius: 26rpx;
-}
-
-.tag.active {
-  background: #FFF8E6;
-  color: #333;
-}
-
-.car-list {
-  height: calc(100vh - 240rpx);
-}
-
-.car-item {
-  margin: 20rpx;
-  padding: 24rpx;
-  background: #fff;
-  border-radius: 12rpx;
-  display: flex;
+  border-radius: 28rpx;
+  transition: all 0.3s;
   position: relative;
 }
 
-.car-image {
-  width: 240rpx;
-  height: 160rpx;
-  margin-right: 20rpx;
+.tag.active {
+  background: #fff;
+  color: #333;
+  font-weight: normal;
+  border: 2rpx solid #FFD702;
 }
 
-.car-info {
-  flex: 1;
+.tag.active::after {
+  content: '';
+  position: absolute;
+  right: -6rpx;
+  top: -6rpx;
+  width: 24rpx;
+  height: 24rpx;
+  background: #FFD702;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.car-name {
-  font-size: 32rpx;
+.tag.active::before {
+  content: '✓';
+  position: absolute;
+  right: -6rpx;
+  top: -6rpx;
+  width: 24rpx;
+  height: 24rpx;
+  color: #fff;
+  font-size: 16rpx;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag-dot {
+  display: inline-block;
+  width: 8rpx;
+  height: 8rpx;
+  background: #0066ff;
+  border-radius: 50%;
+  margin-right: 8rpx;
+}
+
+/* 修改第一个标签的样式 */
+.tag:first-child {
+  background: #f0f9ff;
+  color: #0066ff;
+}
+
+/* 用车安心 */
+.service-banner {
+  margin: 20rpx;
+  padding: 20rpx;
+  background: #FFF8E6;
+  border-radius: 12rpx;
+}
+
+.service-title {
+  font-size: 28rpx;
   color: #333;
   font-weight: 500;
-  margin-bottom: 12rpx;
 }
 
+.service-items {
+  display: flex;
+  align-items: center;
+  margin-top: 12rpx;
+}
+
+.service-item {
+  font-size: 24rpx;
+  color: #666;
+  margin-right: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.service-item image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* 车型列表 */
+.car-list {
+  flex: 1;
+  padding: 0;
+}
+
+.car-category {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.category-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.category-count {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 12rpx;
+}
+
+/* 车型列表项 */
+.car-item {
+  position: relative;
+  width: calc(100% - 40rpx);
+  margin: 20rpx auto;
+  padding: 0;
+  background: #fff;
+  border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 车辆图片 */
+.car-image {
+  width: 100%;
+  height: 360rpx;  /* 固定高度 */
+  margin-bottom: 0;
+  border-radius: 0;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* 车辆信息容器 */
+.car-info {
+  position: absolute;
+  left: 20rpx;
+  right: 20rpx;
+  bottom: 20rpx;
+  z-index: 3;
+  padding: 20rpx;
+  padding-right: 180rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12rpx;
+  transition: opacity 0.3s ease;
+}
+
+/* 价格信息 */
+.car-price {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  z-index: 3;
+  text-align: right;
+  width: 160rpx;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12rpx;
+  transition: opacity 0.3s ease;
+}
+
+/* 默认显示状态 */
+.car-item .car-info,
+.car-item .car-price {
+  opacity: 1;
+}
+
+/* 隐藏状态 */
+.car-item.show-detail .car-image {
+  transform: scale(1.05);
+}
+
+.car-item.show-detail .car-info,
+.car-item.show-detail .car-price {
+  opacity: 0;
+}
+
+/* 遮罩层 - 默认隐藏 */
+.car-item::after {
+  content: '查看详细信息';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+/* 显示遮罩层 */
+.car-item.show-detail::after {
+  opacity: 1;
+}
+
+/* 车辆标签 */
+.car-tag {
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  z-index: 4;
+  padding: 4rpx 12rpx;
+  background: rgba(255, 215, 0, 0.9);
+  border-radius: 4rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+
+/* 车辆名称 */
+.car-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+/* 车辆描述 */
 .car-desc {
   font-size: 26rpx;
   color: #666;
-  margin-bottom: 16rpx;
-}
-
-.car-tags {
   margin-bottom: 12rpx;
 }
 
-.car-tags .tag {
-  font-size: 22rpx;
-  padding: 4rpx 12rpx;
-  margin-right: 12rpx;
-  background: #f8f8f8;
-  border-radius: 4rpx;
-  color: #666;
-}
-
+/* 车辆特点 */
 .car-features {
   display: flex;
   flex-wrap: wrap;
+  gap: 12rpx;
 }
 
-.car-features .feature {
+.feature {
+  padding: 4rpx 12rpx;
+  background: #f5f5f5;
+  border-radius: 4rpx;
   font-size: 24rpx;
-  color: #999;
-  margin-right: 16rpx;
+  color: #666;
 }
 
-.car-price {
-  position: absolute;
-  right: 24rpx;
-  bottom: 24rpx;
-  text-align: right;
+.price-info {
+  margin-bottom: 8rpx;
 }
 
-.car-price .unit {
+.unit {
   font-size: 24rpx;
-  color: #FF6B6B;
+  color: #ff4d4f;
 }
 
-.car-price .amount {
-  font-size: 40rpx;
-  color: #FF6B6B;
+.amount {
+  font-size: 36rpx;
   font-weight: 500;
+  color: #ff4d4f;
 }
 
-.car-price .day {
+.day {
   font-size: 24rpx;
   color: #999;
+}
+
+.pickup-time {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 12rpx;
 }
 
 .book-btn {
-  margin-top: 12rpx;
-  padding: 12rpx 24rpx;
-  background: #FCBB00;
+  display: inline-block;
+  width: 100%;
+  padding: 12rpx 0;
+  background: #ffd700;
+  border-radius: 8rpx;
+  font-size: 28rpx;
   color: #333;
-  font-size: 24rpx;
-  border-radius: 24rpx;
   font-weight: 500;
-} 
+  text-align: center;
+}
+
+/* 品牌下拉菜单样式 */
+.brand-content {
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20rpx;
+}
+
+.brand-item {
+  width: calc(33.33% - 20rpx);
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10rpx;
+  background: #f8f8f8;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.brand-item.active {
+  background: #f0f9ff;
+  color: #A66C04;
+  font-weight: 500;
+}
+
+/* 选中状态的勾选图标 */
+.brand-item .check {
+  position: absolute;
+  right: 8rpx;
+  top: 8rpx;
+  font-size: 24rpx;
+  color: #A66C04;
+}
+
+/* 底部按钮样式 */
+.filter-buttons {
+  display: flex;
+  padding: 20rpx;
+  background: #fff;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.reset-btn, .confirm-btn {
+  flex: 1;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+  transition: opacity 0.3s;
+}
+
+.reset-btn {
+  background: #f5f5f5;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.reset-btn:active {
+  opacity: 0.8;
+}
+
+.confirm-btn {
+  background: #ffd700;
+  color: #333;
+  font-weight: 500;
+}
+
+.confirm-btn:active {
+  opacity: 0.8;
+}
+
+/* 价格下拉菜单样式 */
+.price-content {
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20rpx;
+}
+
+.price-item {
+  width: calc(33.33% - 20rpx);
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10rpx;
+  background: #f8f8f8;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.price-item.active {
+  background: #f0f9ff;
+  color: #A66C04;
+  font-weight: 500;
+}
+
+.price-item .check {
+  position: absolute;
+  right: 8rpx;
+  top: 8rpx;
+  font-size: 24rpx;
+  color: #A66C04;
+}
+
+/* 更多下拉菜单样式 */
+.more-content {
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.more-section {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.section-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+
+.more-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10rpx;
+}
+
+.more-item {
+  width: calc(33.33% - 20rpx);
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10rpx;
+  background: #f8f8f8;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.more-item.active {
+  background: #f0f9ff;
+  color: #A66C04;
+  font-weight: 500;
+}
+
+.more-item .check {
+  position: absolute;
+  right: 8rpx;
+  top: 8rpx;
+  font-size: 24rpx;
+  color: #A66C04;
+}

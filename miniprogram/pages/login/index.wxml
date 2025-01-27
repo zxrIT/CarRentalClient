@@ -1,0 +1,38 @@
+<view class="login-container">
+  <!-- Logo区域 -->
+  <view class="logo-section">
+    <image class="logo" src="/assets/images/car-logo.png" mode="aspectFit"></image>
+    <view class="hint">未注册手机号验证登录后自动注册并绑定账号</view>
+  </view>
+
+  <!-- 登录区域 -->
+  <view class="login-section">
+    <!-- 手机号登录按钮 -->
+    <button 
+      class="phone-login-btn" 
+      bindtap="handlePhoneLogin"
+      hover-class="phone-login-btn-hover"
+    >
+      <text>微信一键登录</text>
+    </button>
+  </view>
+
+  <!-- 协议区域 -->
+  <view class="agreement-section">
+    <checkbox-group bindchange="onAgreementChange">
+      <label class="agreement-label">
+        <checkbox value="agreed" checked="{{isAgreed}}" color="#FFD700"/>
+        <view class="agreement-text">
+          我已阅读并同意
+          <text class="link" bindtap="navigateToAgreement">《服务协议》</text>
+          <text class="link" bindtap="navigateToPrivacy">《隐私政策》</text>
+          <text class="link">《租车服务合同》</text>及
+          <text class="link">《预订服务协议》</text>
+        </view>
+      </label>
+    </checkbox-group>
+  </view>
+  <view class="bottom-section">
+    <text class="skip-btn" bindtap="skipLogin">暂不登录</text>
+  </view>
+</view> 

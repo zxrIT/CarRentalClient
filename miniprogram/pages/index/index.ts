@@ -9,15 +9,17 @@ interface IPageData {
   duration: number;
   showCityPicker: boolean;
   showLocationPicker: boolean;
+  showTimePicker: boolean;
   isReturnDifferentCity: boolean;  // 是否异地还车
   pickingReturnCity: boolean;      // 是否正在选择还车城市
   pickingReturnLocation: boolean;  // 是否正在选择还车网点
   distance: string;  // 添加距离属性
-  showTimePicker: boolean;
   pickingReturnTime: boolean;
   minTime: number;  // 添加 minTime 属性
   pickupWeekDay: string;
   returnWeekDay: string;
+  pickupDate: string;
+  returnDate: string;
 }
 
 // 定义城市选择事件的数据结构
@@ -78,15 +80,17 @@ Page<IPageData>({
     duration: 0,
     showCityPicker: false,
     showLocationPicker: false,
+    showTimePicker: false,
     isReturnDifferentCity: false,
     pickingReturnCity: false,
     pickingReturnLocation: false,
     distance: '',  // 初始化距离为空
-    showTimePicker: false,
     pickingReturnTime: false,
     minTime: 0,  // 初始化 minTime
     pickupWeekDay: '',
-    returnWeekDay: ''
+    returnWeekDay: '',
+    pickupDate: '',
+    returnDate: ''
   },
 
   onLoad() {
@@ -345,6 +349,45 @@ Page<IPageData>({
   handleViewAll() {
     wx.navigateTo({
       url: '/pages/features/index'
+    });
+  },
+
+  onSelectCar() {
+    // 检查是否已选择必要信息
+    if (!this.data.pickupCityName || !this.data.pickupLocation) {
+      wx.showToast({
+        title: '请选择取车城市和网点',
+        icon: 'none'
+      });
+      return;
+    }
+
+    if (!this.data.pickupTime) {
+      wx.showToast({
+        title: '请选择取车时间',
+        icon: 'none'
+      });
+      return;
+    }
+
+    if (!this.data.returnTime) {
+      wx.showToast({
+        title: '请选择还车时间',
+        icon: 'none'
+      });
+      return;
+    }
+
+    // 构造完整的时间和地点信息
+    const params = {
+      location: this.data.pickupLocation,
+      pickupTime: `${this.data.pickupDate} ${this.data.pickupTime}周${this.data.pickupWeekDay}`,
+      returnTime: `${this.data.returnDate} ${this.data.returnTime}周${this.data.returnWeekDay}`
+    };
+
+    // 跳转到选车页面
+    wx.navigateTo({
+      url: `/pages/car-list/index?params=${encodeURIComponent(JSON.stringify(params))}`
     });
   }
 }); 

@@ -58,26 +58,35 @@
       </view>
     </view>
 
-    <!-- 时间选择 -->
-    <view class="time-section">
-      <view class="time-title">{{isSelectingReturn ? '还车时间' : '取车时间'}}</view>
-      <scroll-view 
-        scroll-y 
-        class="time-picker-wrapper"
-        show-scrollbar="{{false}}"
-      >
-        <view class="time-list">
+    <!-- 时间选择区域 -->
+    <view class="time-select">
+      <view class="time-label">选择时间</view>
+      <view class="time-value" bindtap="showTimeSelect">
+        <text>{{isSelectingReturn ? returnTime : pickupTime}}</text>
+        <image class="arrow" src="/assets/icons/arrow-down.png" mode="aspectFit"></image>
+      </view>
+    </view>
+
+    <!-- 时间选择器弹窗 -->
+    <view class="time-picker-popup" wx:if="{{showTime}}">
+      <view class="time-picker-mask" bindtap="hideTimeSelect"></view>
+      <view class="time-picker-panel">
+        <view class="time-picker-header">
+          <text>选择时间</text>
+          <image class="close-icon" src="/assets/icons/close.png" mode="aspectFit" bindtap="hideTimeSelect"></image>
+        </view>
+        <scroll-view class="time-list" scroll-y>
           <view 
+            class="time-item {{(isSelectingReturn ? returnTime : pickupTime) === item ? 'selected' : ''}}" 
             wx:for="{{timeArray}}" 
-            wx:key="index"
-            class="time-item {{(isSelectingReturn ? returnTime : pickupTime) === item ? 'selected' : ''}}"
-            bindtap="onTimeSelect"
+            wx:key="*this"
             data-time="{{item}}"
+            bindtap="onTimeSelect"
           >
             {{item}}
           </view>
-        </view>
-      </scroll-view>
+        </scroll-view>
+      </view>
     </view>
 
     <!-- 底部按钮 -->
