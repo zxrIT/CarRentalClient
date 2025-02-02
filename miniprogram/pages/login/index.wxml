@@ -10,7 +10,7 @@
     <!-- 手机号登录按钮 -->
     <button 
       class="phone-login-btn" 
-      bindtap="handlePhoneLogin"
+      bindtap="handleWechatLogin"
       hover-class="phone-login-btn-hover"
     >
       <text>微信一键登录</text>

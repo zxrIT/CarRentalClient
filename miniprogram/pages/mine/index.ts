@@ -1,45 +1,49 @@
 interface IPageData {
-  isLogin: boolean;
-  userInfo: WechatMiniprogram.UserInfo | null;
+	isLogin: boolean;
+	userInfo: WechatMiniprogram.IUser;
 }
 
-Page<IPageData>({
-  data: {
-    isLogin: false,
-    userInfo: null
-  },
+interface IPageMethods {
+	onShow: () => void;
+	checkLoginStatus: () => void;
+	handleLogin: () => void;
+	navigateTo: (e: WechatMiniprogram.TouchEvent) => void;
+}
 
-  onShow() {
-    // 每次显示页面时检查登录状态
-    this.checkLoginStatus();
-  },
+Page<IPageData, IPageMethods>({
+	data: {
+		isLogin: false,
+		userInfo: {} as WechatMiniprogram.IUser
+	},
 
-  checkLoginStatus() {
-    const token = wx.getStorageSync('token');
-    const userInfo = wx.getStorageSync('userInfo');
-    
-    this.setData({
-      isLogin: !!token,
-      userInfo: userInfo || null
-    });
-  },
+	onShow() {
+		this.checkLoginStatus();
+	},
 
-  handleLogin() {
-    if (!this.data.isLogin) {
-      wx.navigateTo({
-        url: '/pages/login/index?from=mine'
-      });
-    }
-  },
+	checkLoginStatus() {
+		const userInfo = JSON.parse(wx.getStorageSync('user'));
+		this.setData({
+			isLogin: Object.keys(userInfo).length > 0,
+			userInfo: userInfo || {}
+		});
+	},
 
-  navigateTo(e: WechatMiniprogram.TouchEvent) {
-    const url = e.currentTarget.dataset.url;
-    if (!this.data.isLogin) {
-      wx.navigateTo({
-        url: '/pages/login/index?from=mine'
-      });
-      return;
-    }
-    wx.navigateTo({ url });
-  }
+	handleLogin() {
+		if (!this.data.isLogin) {
+			wx.navigateTo({
+				url: '/pages/login/index?from=mine'
+			});
+		}
+	},
+
+	navigateTo(e: WechatMiniprogram.TouchEvent) {
+		const url = e.currentTarget.dataset.url;
+		if (!this.data.isLogin) {
+			wx.navigateTo({
+				url: '/pages/login/index?from=mine'
+			});
+			return;
+		}
+		wx.navigateTo({ url });
+	}
 }); 

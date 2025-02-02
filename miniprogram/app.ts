@@ -3,13 +3,10 @@ interface IGlobalData {
   userInfo: WechatMiniprogram.UserInfo | null;
 }
 
-App<{
-  globalData: IGlobalData;
-  checkLoginStatus: () => Promise<boolean>;
-}>({
+App<IAppOption>({
   globalData: {
     isLogin: false,
-    userInfo: null
+    userInfo: undefined
   },
 
   async checkLoginStatus(): Promise<boolean> {

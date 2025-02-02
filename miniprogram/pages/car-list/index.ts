@@ -84,7 +84,7 @@ interface IPageData {
 	isLogin: boolean;
 }
 
-interface IPageCustom {
+interface IPageMethods {
 	onLoad: (options: Record<string, string | undefined>) => void;
 	onEditTime: () => void;
 	onFilterTap: (e: WechatMiniprogram.TouchEvent) => void;
@@ -109,11 +109,11 @@ interface IPageCustom {
 	filterCarsByMore: () => void;
 	onQuickTagTap: (e: WechatMiniprogram.TouchEvent) => void;
 	filterCarsByFeatures: () => void;
-	/** 点击查看车辆详情 */
 	onCarItemTap: (e: WechatMiniprogram.TouchEvent) => void;
+	onBookCar: (e: WechatMiniprogram.TouchEvent) => void;
 }
 
-Page<IPageData, IPageCustom>({
+Page<IPageData, IPageMethods>({
 	data: {
 		/** 取车地点 */
 		location: '',
@@ -403,9 +403,10 @@ Page<IPageData, IPageCustom>({
 		}
 
 		// 检查登录状态
-		const token = wx.getStorageSync('token');
+		const userStr = wx.getStorageSync('user');
+		const user = userStr ? JSON.parse(userStr) : null;
 		this.setData({
-			isLogin: !!token
+			isLogin: !!user && Object.keys(user).length > 0
 		});
 	},
 
