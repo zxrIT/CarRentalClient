@@ -74,7 +74,7 @@
         <!-- 底部按钮 -->
         <view class="filter-buttons">
           <view class="reset-btn" bindtap="onReset">重置</view>
-          <view class="confirm-btn" bindtap="onConfirm">确定 (11款车型)</view>
+          <view class="confirm-btn" bindtap="onConfirm">确定 ({{carLength}}款车型)</view>
         </view>
       </view>
     </view>
@@ -118,7 +118,7 @@
         <!-- 底部按钮 -->
         <view class="filter-buttons">
           <view class="reset-btn" bindtap="onPriceReset">重置</view>
-          <view class="confirm-btn" bindtap="onPriceConfirm">确定 (11款车型)</view>
+          <view class="confirm-btn" bindtap="onPriceConfirm">确定 ({{carLength}}款车型)</view>
         </view>
       </view>
     </view>
@@ -182,7 +182,7 @@
         <!-- 底部按钮 -->
         <view class="filter-buttons">
           <view class="reset-btn" bindtap="onMoreReset">重置</view>
-          <view class="confirm-btn" bindtap="onMoreConfirm">确定 (11款车型)</view>
+          <view class="confirm-btn" bindtap="onMoreConfirm">确定 ({{carLength}}款车型)</view>
         </view>
       </view>
     </view>
@@ -214,9 +214,9 @@
   <!-- 车型列表 -->
   <scroll-view class="car-list" scroll-y>
     <!-- 车型分类 -->
-    <view class="car-category">
+    <view class="car-category" style="margin-left: 20rpx;">
       <view class="category-name">全部车型</view>
-      <view class="category-count">11款可租</view>
+      <view class="category-count">{{carLength}}款可租</view>
     </view>
 
     <!-- 车型列表项 -->
@@ -225,7 +225,7 @@
           wx:key="id" 
           bindtap="onCarItemTap" 
           data-index="{{index}}">
-      <view class="car-tag" wx:if="{{item.tags.includes('雪地胎')}}">雪地胎</view>
+      <view class="car-tag">{{item.tags}}</view>
       <image class="car-image" src="{{item.image}}" mode="aspectFit"></image>
       <view class="car-info" catch:tap>
         <view class="car-name">{{item.name}}</view>

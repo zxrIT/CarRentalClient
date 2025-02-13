@@ -1,3 +1,7 @@
+import { BaseResponse } from "../../response/baseResponse";
+import { ICarData } from "../../typings/entity/carProduct";
+import { requestFunction } from "../../utils/request";
+
 interface ICarItem {
 	id: string;
 	name: string;
@@ -82,6 +86,9 @@ interface IPageData {
 	};
 
 	isLogin: boolean;
+
+	/** 车辆总数 */
+	carLength: number;
 }
 
 interface IPageMethods {
@@ -134,104 +141,7 @@ Page<IPageData, IPageMethods>({
 		sortType: 'default',
 
 		/** 车辆列表数据 */
-		cars: [
-			{
-				id: '1',
-				name: '日产轩逸',
-				desc: '1.6自动 | 三厢 5座',
-				image: '/assets/images/cars/nissan.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车雷达', '蓝牙连接', '雪地胎'],
-				price: 123,
-				brand: '日产',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '2',
-				name: '雪佛兰科鲁泽',
-				desc: '1.5自动 | 三厢 5座',
-				image: '/assets/images/cars/chevrolet.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 133,
-				brand: '雪佛兰',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '3',
-				name: '日产劲客',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 143,
-				brand: '日产',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '4',
-				name: '日产霸道',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 243,
-				brand: '日产',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '5',
-				name: '高尔夫',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 443,
-				brand: '大众',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '6',
-				name: '捷达',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 243,
-				brand: '大众',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '7',
-				name: '坦克300',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 543,
-				brand: '长城',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '8',
-				name: '坦克500',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 643,
-				brand: '长城',
-				energy: "汽油",
-				seats: "5"
-			}
-		],
+		cars: [],
 
 		/** 当前选中的品牌类型，'all'表示不限 */
 		brandType: 'all',
@@ -248,104 +158,7 @@ Page<IPageData, IPageMethods>({
 		],
 
 		/** 原始车辆列表，用于重置筛选 */
-		originalCars: [
-			{
-				id: '1',
-				name: '日产轩逸',
-				desc: '1.6自动 | 三厢 5座',
-				image: '/assets/images/cars/nissan.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车雷达', '蓝牙连接', '雪地胎'],
-				price: 123,
-				brand: '日产',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '2',
-				name: '雪佛兰科鲁泽',
-				desc: '1.5自动 | 三厢 5座',
-				image: '/assets/images/cars/chevrolet.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 133,
-				brand: '雪佛兰',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '3',
-				name: '日产劲客',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 143,
-				brand: '日产',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '4',
-				name: '日产霸道',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 243,
-				brand: '日产',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '5',
-				name: '高尔夫',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 443,
-				brand: '大众',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '6',
-				name: '捷达',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 243,
-				brand: '大众',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '7',
-				name: '坦克300',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 543,
-				brand: '长城',
-				energy: "汽油",
-				seats: "5"
-			},
-			{
-				id: '8',
-				name: '坦克500',
-				desc: '1.5自动 | SUV 5座',
-				image: '/assets/images/cars/nissan-suv.png',
-				tags: ['雪地胎'],
-				features: ['车龄2年内', '倒车影像', '倒车雷达', '蓝牙连接'],
-				price: 643,
-				brand: '长城',
-				energy: "汽油",
-				seats: "5"
-			}
-		],
+		originalCars: [],
 
 		/** 当前选中的价格区间，'all'表示不限 */
 		priceRange: 'all',
@@ -384,7 +197,10 @@ Page<IPageData, IPageMethods>({
 			more: undefined
 		},
 
-		isLogin: false
+		isLogin: false,
+
+		/** 车辆总数 */
+		carLength: 0
 	},
 
 	/** 加载页面初始数据 */
@@ -406,7 +222,7 @@ Page<IPageData, IPageMethods>({
 		const userStr = wx.getStorageSync('user');
 		const user = userStr ? JSON.parse(userStr) : null;
 		this.setData({
-			isLogin: !!user && Object.keys(user).length > 0
+			isLogin: user!==null && Object.keys(user).length > 0
 		});
 	},
 
@@ -698,7 +514,7 @@ Page<IPageData, IPageMethods>({
 				.map(f => f.name);
 
 			// 检查车辆是否包含所有选中的特性
-			return selectedFeatures.every(feature => 
+			return selectedFeatures.every(feature =>
 				car.features.includes(feature)
 			);
 		});
@@ -773,13 +589,65 @@ Page<IPageData, IPageMethods>({
 		
 		// 检查是否登录
 		if (!this.data.isLogin) {
+			// 未登录时，先跳转到登录页面，并传递车辆ID
 			wx.navigateTo({
-				url: '/pages/login/index?from=car-list'
+				url: `/pages/login/index?from=car-list&carId=${car.id}`
 			});
 			return;
 		}
 
-		// TODO: 已登录，跳转到订单确认页
-		console.log('预订车辆:', car);
+		// 已登录时，直接跳转到车辆详情页
+		wx.navigateTo({
+			url: `/pages/car-detail/index?id=${car.id}`
+		});
+	},
+
+	async onShow() {
+		try {
+			// 先检查登录状态
+			const userStr = wx.getStorageSync('user');
+			const user = userStr ? JSON.parse(userStr) : null;
+			this.setData({
+				isLogin: user !== null && Object.keys(user).length > 0
+			});
+
+			// 获取车辆列表
+			const response = await requestFunction<BaseResponse<ICarData[]>>({
+				url: "http://localhost:8080/business/car/all",
+				method: "GET"
+			});
+
+			if (response.code === 200) {
+				const carList = response.data.map((car: ICarData) => ({
+					id: car.id,
+					name: car.name,
+					image: "http://localhost:8080/static/" + car.carImage,
+					tags: [car.firstTag],
+					features: [car.firstTag, car.secondTag, car.thirdTag, car.fourthTag].filter(Boolean),
+					desc: `${car.displacement}|${car.specifications}`,
+					brand: car.brand,
+					price: car.currentPrice,
+					energy: car.energy,
+					seats: car.seats.toString()
+				}));
+
+				this.setData({
+					cars: carList,
+					originalCars: carList,
+					carLength: carList.length
+				});
+			} else {
+				wx.showToast({
+					title: response.message || '获取数据失败',
+					icon: 'none'
+				});
+			}
+		} catch (error) {
+			console.error('获取车辆列表失败:', error);
+			wx.showToast({
+				title: '获取车辆列表失败',
+				icon: 'none'
+			});
+		}
 	}
 }); 

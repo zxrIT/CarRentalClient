@@ -5,7 +5,8 @@
     "pages/mine/index",
     "pages/features/index",
     "pages/car-list/index",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/car-detail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

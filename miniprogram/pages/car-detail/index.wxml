@@ -1,0 +1,121 @@
+<view class="container">
+	<!-- 车辆图片 -->
+	<view class="car-image-section">
+		<image src="{{car.image}}" mode="aspectFit" class="car-image"></image>
+	</view>
+
+	<!-- 基本信息 -->
+	<view class="info-section">
+		<view class="car-name">{{car.name}}</view>
+		<view class="car-desc">{{car.desc}}</view>
+		<view class="car-features">
+			<text class="feature" wx:for="{{car.features}}" wx:key="*this">{{item}}</text>
+		</view>
+	</view>
+
+	<!-- 车辆规格 -->
+	<view class="specs-section">
+		<view class="specs-grid">
+			<view class="spec-item">
+				<text class="label">能源类型</text>
+				<text class="value">{{car.specifications.energy}}</text>
+			</view>
+			<view class="spec-item">
+				<text class="label">排量/排档</text>
+				<text class="value">{{car.specifications.displacement}}</text>
+			</view>
+			<view class="spec-item">
+				<text class="label">结构/座位</text>
+				<text class="value">{{car.specifications.seats}}</text>
+			</view>
+			<view class="spec-item">
+				<text class="label">燃油标号</text>
+				<text class="value">{{car.fuelOilNumber}}汽油</text>
+			</view>
+			<view class="spec-item">
+				<text class="label">邮箱容量</text>
+				<text class="value">{{car.volume}}L</text>
+			</view>
+		</view>
+	</view>
+
+	<!-- 配置信息 -->
+	<view class="config-section">
+		<view class="config-title">配置信息</view>
+		<scroll-view class="config-scroll" scroll-x enhanced show-scrollbar="{{false}}" bindscroll="onScrollChange">
+			<view class="config-scroll-content">
+				<!-- 第一页配置 -->
+				<view class="config-grid">
+					<view class="config-item">
+						<text class="label">自动空调</text>
+						<text class="value">{{car.configurations.airConditioner}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">空气系统</text>
+						<text class="value">{{car.configurations.airSystem}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">座椅</text>
+						<text class="value">{{car.configurations.seats}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">驾驶辅助影像</text>
+						<text class="value">{{car.configurations.drivingAssist}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">手机互联</text>
+						<text class="value">{{car.configurations.phoneConnect}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">天窗</text>
+						<text class="value">{{car.configurations.sunroof}}</text>
+					</view>
+				</view>
+				<!-- 第二页配置 -->
+				<view class="config-grid">
+					<view class="config-item">
+						<text class="label">前/后雷达</text>
+						<text class="value">{{car.configurations.radar}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">胎压监测功能</text>
+						<text class="value">{{car.configurations.tirePressure}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">蓝牙/充电口</text>
+						<text class="value">{{car.configurations.bluetooth}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">远/近光灯</text>
+						<text class="value">{{car.configurations.lights}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">自动驻车</text>
+						<text class="value">{{car.configurations.parking}}</text>
+					</view>
+					<view class="config-item">
+						<text class="label">一键启动</text>
+						<text class="value">{{car.configurations.startup}}</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+		<!-- 分页指示器移到scroll-view外面 -->
+		<view class="dots">
+			<view class="dot {{currentPage === 0 ? 'active' : ''}}"></view>
+			<view class="dot {{currentPage === 1 ? 'active' : ''}}"></view>
+		</view>
+	</view>
+
+	<!-- 底部预订按钮 -->
+	<view class="bottom-bar">
+		<view class="price-info">
+			<text class="price">¥</text>
+			<text class="price-number">{{car.price}}</text>
+			<text class="day">/日均</text>
+		</view>
+		<button class="book-btn" bindtap="onBookNow" hover-class="button-hover" style="margin-left: 300rpx;">
+			{{isLogin ? '立即预订' : '登录并预订'}}
+		</button>
+	</view>
+</view>

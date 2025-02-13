@@ -6,18 +6,23 @@ interface IPageData {
 	userInfo: WechatMiniprogram.IUser
 	isAgreed: boolean;
 	from: string;
+	carId?: string;
 }
 
 Page<IPageData>({
 	data: {
 		userInfo: {},
 		isAgreed: false,
-		from: ''
+		from: '',
+		carId: ''
 	},
 
 	onLoad(options) {
 		if (options.from) {
-			this.setData({ from: options.from });
+			this.setData({ 
+				from: options.from,
+				carId: options.carId || ''
+			});
 		}
 	},
 
@@ -59,7 +64,13 @@ Page<IPageData>({
 								icon: "success",
 								duration: 2000
 							})
-							wx.navigateBack()
+							if (this.data.from === 'car-list' && this.data.carId) {
+								wx.navigateTo({
+									url: `/pages/car-detail/index?id=${this.data.carId}`
+								})
+							} else {
+								wx.navigateBack()
+							}
 							return
 						}
 						wx.showToast({
