@@ -1,0 +1,33 @@
+<view class="container">
+  <!-- 顶部积分信息 -->
+  <view class="points-header">
+    <view class="points-info-box">
+      <view class="points-title">
+        <text>可用积分</text>
+        <image class="help-icon" src="/assets/icon/help.png" mode="aspectFit"></image>
+      </view>
+      <view class="points-number">{{userPoints}}</view>
+    </view>
+    <view class="points-tip">2021年8月1日起，所有老用户账户里的现有效积分统一根据1:2的价值比例换为新的有效积分</view>
+  </view>
+
+  <view class="points-list">
+    <view class="points-item" wx:for="{{points}}" wx:key="title">
+      <view class="points-card">
+        <view class="amount">
+          <text class="symbol">¥</text>
+          <text class="number">{{item.amount}}</text>
+        </view>
+        <view class="type">{{item.type}}</view>
+      </view>
+      <view class="points-info">
+        <view class="title">{{item.title}}</view>
+        <view class="points-required">{{item.points}}积分</view>
+      </view>
+      <view class="exchange-btn" bindtap="exchangePoints" data-index="{{index}}">
+        {{item.status}}
+      </view>
+    </view>
+  </view>
+  <view class="bottom-text">- 已经到底了 -</view>
+</view> 

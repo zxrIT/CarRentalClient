@@ -22,7 +22,7 @@
       <image src="/assets/icon/coupon.png" mode="aspectFit"></image>
       <text>优惠券</text>
     </view>
-    <view class="entry-item" bindtap="navigateTo" data-url="/pages/rent/index">
+    <view class="entry-item" bindtap="navigateToRentCard">
       <image src="/assets/icon/rent.png" mode="aspectFit"></image>
       <text>随心租</text>
     </view>
@@ -64,7 +64,7 @@
       <image src="/assets/icon/payment.png" mode="aspectFit"></image>
       <text>支付分免押</text>
     </view>
-    <view class="service-item" bindtap="navigateTo" data-url="/pages/help/index">
+    <view class="service-item" bindtap="navigateToHelp">
       <image src="/assets/icon/support.png" mode="aspectFit"></image>
       <text>帮助中心</text>
     </view>

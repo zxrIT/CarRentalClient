@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="header">
+    <view class="date">生效时间：{{validDate}}</view>
+  </view>
+
+  <view class="content">
+    <view class="parties">
+      <view class="party">车辆出租方（甲方）：{{partyA}}</view>
+      <view class="party">{{partyB}}</view>
+      <view class="party">服务提供方（丙方）：{{partyC}}</view>
+      <view class="party">承租人（如有）：（如有）</view>
+    </view>
+
+    <view class="agreement-text">
+      甲乙丙各方经友好协商，同意就汽车租赁及其他用车服务事宜达成如下协议：
+    </view>
+
+    <view class="section">
+      <view class="section-title">一、租赁车辆、租金及租期</view>
+      <view class="section-content">
+        <view class="clause">1.1 租赁车辆、租期、车辆租赁费用及其它费用、付款日期等具体事项以现场租车单为准。</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">二、各方的权利和义务</view>
+      <view class="section-content">
+        <view class="clause">2.1 甲方负责向乙方提供租赁车辆及该车辆行驶必备的法定证件，为车辆投保交强险。</view>
+        <view class="clause">2.2 甲方承诺对租赁车辆拥有所有权或具备合法的出租权利，有权签署合同。</view>
+        <view class="clause">2.3 甲方负责租赁车辆的日常维护保养、牌照年审，有义务协助乙方补办遗失的租赁车辆牌照和相关证件。</view>
+        <view class="clause">2.4 丙方负责提供车辆租赁的规定信息服务、车辆查看服务和结算服务，并根据乙方的需求提供加油服务、车辆保养维修服务、车辆保险服务、门店送车服务、车辆救援保障等用车服务。</view>
+        <view class="clause">2.5 甲方、丙方确保乙方在租赁期内可正常使用租赁车辆。</view>
+        <view class="clause">2.6 甲方、丙方有义务协助乙方处理交通事故和保险理赔事项，但因租赁车辆保管不善而造成的损失由乙方承担。</view>
+        <view class="clause">2.7 甲方、丙方应当对所知悉的乙方信息承担保密义务。</view>
+        <view class="clause">2.8 在不影响乙方正常使用车辆的情况下，甲方或丙方可通过合理方式对租赁车辆进行检查。</view>
+      </view>
+    </view>
+  </view>
+</view> 

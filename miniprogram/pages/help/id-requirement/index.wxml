@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="table">
+    <view class="table-header">
+      <view class="cell">客户类型</view>
+      <view class="cell">身份证件</view>
+      <view class="cell">有效期</view>
+      <view class="cell">身份验证</view>
+    </view>
+    <view class="table-row" wx:for="{{requirements}}" wx:key="type">
+      <view class="cell">{{item.type}}</view>
+      <view class="cell">{{item.idType}}</view>
+      <view class="cell">{{item.validity || '-'}}</view>
+      <view class="cell">{{item.remark || '-'}}</view>
+    </view>
+  </view>
+
+  <view class="notice">
+    <view class="notice-title">温馨提示</view>
+    <view class="notice-item">1. 请确保提供的证件真实有效，如发现伪造或变造证件，将承担相应法律责任。</view>
+    <view class="notice-item">2. 证件有效期不满足要求的，建议及时更换或续期。</view>
+    <view class="notice-item">3. 外籍人士请提前准备好相关证件，以便顺利完成租车。</view>
+  </view>
+</view> 

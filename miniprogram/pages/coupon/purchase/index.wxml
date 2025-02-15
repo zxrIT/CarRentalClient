@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="empty-state" wx:if="{{!purchases.length}}">
+    <image src="/assets/images/empty-purchase.png" mode="aspectFit"></image>
+    <text>暂无购买记录</text>
+  </view>
+</view> 

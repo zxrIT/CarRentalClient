@@ -12,5 +12,21 @@ Page<IPageData, IPageInstance>({
   },
   onLoad() {
     // 页面加载时执行
+  },
+  // 添加跳转方法
+  navigateToIdRequirement() {
+    wx.navigateTo({
+      url: '/pages/help/id-requirement/index'
+    });
+  },
+  navigateToRentRule() {
+    wx.navigateTo({
+      url: '/pages/help/rent-rule/index'
+    });
+  },
+  navigateToViolation() {
+    wx.navigateTo({
+      url: '/pages/help/violation/index'
+    });
   }
 }) 

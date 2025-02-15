@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="empty-state" wx:if="{{!histories.length}}">
+    <image src="/assets/images/empty-history.png" mode="aspectFit"></image>
+    <text>暂无历史记录</text>
+  </view>
+</view> 

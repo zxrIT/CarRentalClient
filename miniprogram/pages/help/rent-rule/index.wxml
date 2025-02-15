@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="rules">
+    <block wx:for="{{rules}}" wx:key="title">
+      <view class="rule-section">
+        <view class="rule-title">{{item.title}}</view>
+        <view class="rule-items" wx:if="{{item.items}}">
+          <view class="rule-item" wx:for="{{item.items}}" wx:key="*this" wx:for-item="subItem">
+            {{subItem}}
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view> 

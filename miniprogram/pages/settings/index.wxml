@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="settings-list">
+    <view class="settings-item">
+      <text>微信绑定</text>
+      <text class="status">{{isWechatBound ? '已绑定' : '未绑定'}}</text>
+      <text class="arrow">></text>
+    </view>
+
+    <view class="settings-item" bindtap="navigateTo" data-url="/pages/settings/profile/index">
+      <text>个性化设置</text>
+      <text class="arrow">></text>
+    </view>
+
+    <view class="settings-item" bindtap="navigateTo" data-url="/pages/settings/agreement/index">
+      <text>租车服务合同</text>
+      <text class="arrow">></text>
+    </view>
+
+    <view class="settings-item" bindtap="navigateTo" data-url="/pages/settings/privacy/index">
+      <text>隐私政策</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+  <view class="logout-btn" bindtap="onLogout">退出登录</view>
+</view> 

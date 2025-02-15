@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="settings-list">
+    <view class="settings-item">
+      <view class="setting-left">
+        <text class="title">个性化推荐管理</text>
+        <text class="desc">关闭后，无法收到个性化推荐，建议开启</text>
+      </view>
+      <switch checked="{{isRecommendEnabled}}" bindchange="onSwitchChange" color="#FFD700" />
+    </view>
+  </view>
+</view> 

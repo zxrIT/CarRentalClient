@@ -1,0 +1,37 @@
+<view class="container">
+  <!-- 避免违章提示 -->
+  <view class="section">
+    <view class="section-title warning">{{notice.title}}</view>
+    <view class="notice-items">
+      <view class="notice-item" wx:for="{{notice.items}}" wx:key="*this">
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 猜您想问 -->
+  <view class="section">
+    <view class="section-title">猜您想问</view>
+    <view class="qa-list">
+      <view class="qa-item" wx:for="{{questions}}" wx:key="question">
+        <view class="question">
+          <text class="q-icon">Q</text>
+          <text>{{item.question}}</text>
+        </view>
+        <view class="answer">
+          <text class="a-icon">A</text>
+          <view class="answer-content">
+            <block wx:if="{{item.isSimpleAnswer}}">
+              {{item.answer}}
+            </block>
+            <block wx:else>
+              <view wx:for="{{item.answer}}" wx:key="*this" wx:for-item="line">
+                {{line}}
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 

@@ -1,0 +1,126 @@
+.container {
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding: 20rpx;
+}
+
+/* 顶部积分信息样式 */
+.points-header {
+  background: linear-gradient(to right, #FFE4B5, #FFD700);
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.points-info-box {
+  margin-bottom: 20rpx;
+}
+
+.points-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.points-title text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.help-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 8rpx;
+}
+
+.points-number {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.points-tip {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.4;
+}
+
+.points-list {
+  padding-bottom: 40rpx;
+}
+
+.points-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border-radius: 12rpx;
+}
+
+.points-card {
+  width: 160rpx;
+  height: 160rpx;
+  background: #fff6f6;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30rpx;
+}
+
+.amount {
+  display: flex;
+  align-items: baseline;
+}
+
+.symbol {
+  font-size: 28rpx;
+  color: #ff4d4f;
+}
+
+.number {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #ff4d4f;
+}
+
+.type {
+  font-size: 24rpx;
+  color: #ff4d4f;
+  margin-top: 8rpx;
+}
+
+.points-info {
+  flex: 1;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.points-required {
+  font-size: 26rpx;
+  color: #ff4d4f;
+}
+
+.exchange-btn {
+  width: 120rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  background: #FFD700;
+  color: #333;
+  font-size: 26rpx;
+  text-align: center;
+  border-radius: 28rpx;
+}
+
+.bottom-text {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  padding: 30rpx 0;
+} 

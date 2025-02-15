@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="header">
+    <view class="date">生效时间：{{validDate}}</view>
+  </view>
+
+  <view class="content">
+    <view class="section">
+      <text class="title">个人信息指以电子或者其他方式记录的能够单独或者与其他信息结合识别特定自然人身份或者反映特定自然人活动情况的各种信息。在本隐私保护声明中包括：姓名、手机号码、身份信息、照片、性别、年龄、职业信息、征信信息、驾驶证、电子邮箱、常用地址、通讯地址、紧急联系人、位置信息、通话记录、录音信息、网络状态、电子设备信息、支付信息、交付信息、日志信息、设备IMEI/android ID、MAC地址、本机应用列表、历史浏览记录、IP地址、设备标识符、操作系统版本、积分商城兑换记录等。</text>
+    </view>
+
+    <view class="section">
+      <text class="title">个人敏感信息，是指一旦泄露、非法提供或滥用可能危害人身和财产安全，极易导致个人名誉、身心健康受到损害或歧视性待遇等的个人信息。在本隐私保护声明中包括：银行账户、签约信息（口令）、交易和消费记录、身份证、护照、驾驶证等、行踪轨迹、精准定位信息等。</text>
+    </view>
+
+    <view class="section">
+      <text class="title">匿名化处理后的信息，即通过对个人信息的技术处理，使得个人信息主体无法被识别，且处理后的信息不能被复原的信息。匿名化处理后的信息不属于个人信息。</text>
+    </view>
+
+    <view class="section">
+      <text class="title">其他无法识别特定自然人身份或者反映特定自然人活动情况的信息。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">二、我们向您收集个人信息的方式</text>
+      <text class="text">1.您向我们提供的信息</text>
+      <text class="text">为了遵守法律规定的要求，以及向您提供更个性化、更便捷高效的服务，我们需要收集您的特定个人信息。当您注册我们的用户及提供相关个人信息时，我们以如下方式创建账号：</text>
+      <text class="text">1.1 为您注册成为我们的用户以及提供核心服务，您需要向我们提供您的手机号码，我们将以此创建账号，如您拒绝提供将无法完成账号创建。</text>
+    </view>
+  </view>
+</view> 

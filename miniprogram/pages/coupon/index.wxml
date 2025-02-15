@@ -1,0 +1,51 @@
+<view class="container">
+  <!-- 顶部标签页 -->
+  <view class="tabs">
+    <view 
+      class="tab-item {{activeTab === index ? 'active' : ''}}" 
+      wx:for="{{tabs}}" 
+      wx:key="*this"
+      bindtap="onTabChange"
+      data-index="{{index}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 优惠券列表 -->
+  <view class="coupon-list" wx:if="{{activeTab === 0}}">
+    <view class="coupon-item" wx:for="{{coupons}}" wx:key="title" bindtap="showCouponDetail">
+      <view class="coupon-left">
+        <text class="symbol">¥</text>
+        <text class="amount">{{item.amount}}</text>
+      </view>
+      <view class="coupon-right">
+        <view class="title">{{item.title}}</view>
+        <view class="valid-time">{{item.validTime}}</view>
+        <view class="desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 随心租标签页 -->
+  <view class="rent-content" wx:if="{{activeTab === 1}}">
+    <view class="empty-rent">
+      <image src="/assets/images/card.png" mode="aspectFit" class="card-icon"></image>
+      <text class="empty-text">暂无随心卡、折扣卡</text>
+    </view>
+    <view class="bottom-tabs">
+      <view class="bottom-tab" bindtap="onHistoryTap">历史记录</view>
+      <view class="divider"></view>
+      <view class="bottom-tab" bindtap="onPurchaseTap">购买记录</view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{activeTab === 0 && coupons.length === 0}}">
+    <image src="/assets/images/empty-coupon.png" mode="aspectFit"></image>
+    <text>暂无优惠券</text>
+  </view>
+
+  <!-- 积分兑换按钮 -->
+  <view class="exchange-btn">积分兑换</view>
+</view> 

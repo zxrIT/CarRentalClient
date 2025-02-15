@@ -1,0 +1,42 @@
+.container {
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding: 30rpx;
+}
+
+.rules {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.rule-section {
+  margin-bottom: 40rpx;
+}
+
+.rule-section:last-child {
+  margin-bottom: 0;
+}
+
+.rule-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+
+.rule-items {
+  padding-left: 20rpx;
+}
+
+.rule-item {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+
+.rule-item:last-child {
+  margin-bottom: 0;
+} 

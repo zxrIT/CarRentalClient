@@ -8,6 +8,8 @@ interface IPageMethods {
 	checkLoginStatus: () => void;
 	handleLogin: () => void;
 	navigateTo: (e: WechatMiniprogram.TouchEvent) => void;
+	navigateToHelp: () => void;
+	navigateToRentCard: () => void;
 }
 
 Page<IPageData, IPageMethods>({
@@ -45,5 +47,23 @@ Page<IPageData, IPageMethods>({
 			return;
 		}
 		wx.navigateTo({ url });
+	},
+
+	navigateToRentCard() {
+		if (!this.data.isLogin) {
+			wx.navigateTo({
+				url: '/pages/login/index?from=rent-card'
+			});
+			return;
+		}
+		wx.navigateTo({
+			url: '/pages/mine/rent-card/index'
+		});
+	},
+
+	navigateToHelp() {
+		wx.switchTab({
+			url: '/pages/help/help'
+		});
 	}
 }); 

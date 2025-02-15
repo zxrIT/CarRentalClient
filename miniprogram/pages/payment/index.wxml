@@ -1,0 +1,50 @@
+<view class="container">
+  <!-- 顶部banner -->
+  <image class="banner" src="/assets/images/payment-banner.png" mode="widthFix"></image>
+
+  <!-- 信用分要求 -->
+  <view class="credit-score">
+    <image src="/assets/icon/wechat.png" mode="aspectFit" class="wechat-icon"></image>
+    <text>微信支付分 | {{creditScore}}分以上信用优享</text>
+  </view>
+
+  <!-- 申请流程 -->
+  <view class="process-section">
+    <view class="section-title">申请流程</view>
+    <view class="process-item">
+      <view class="step">01</view>
+      <view class="step-content">
+        <text class="step-title">订单详情页</text>
+        <text class="step-desc">在【车辆租金】项中选择【微信支付分】</text>
+        <image class="step-image" src="/assets/images/payment-step1.png" mode="widthFix"></image>
+      </view>
+    </view>
+    <view class="process-item">
+      <view class="step">02</view>
+      <view class="step-content">
+        <text class="step-title">确认授权</text>
+        <text class="step-desc">点击【确认授权】，完成支付分查询授权</text>
+        <image class="step-image" src="/assets/images/payment-step2.png" mode="widthFix"></image>
+      </view>
+    </view>
+    <view class="process-item">
+      <view class="step">03</view>
+      <view class="step-content">
+        <text class="step-title">提交订单</text>
+        <text class="step-desc">支付分满650分可免押金租车，点击【提交订单】</text>
+        <image class="step-image" src="/assets/images/payment-step3.png" mode="widthFix"></image>
+      </view>
+    </view>
+    <view class="process-item">
+      <view class="step">04</view>
+      <view class="step-content">
+        <text class="step-title">完成支付</text>
+        <text class="step-desc">支付租车费用后即可完成下单</text>
+        <image class="step-image" src="/assets/images/payment-step4.png" mode="widthFix"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 立即申请按钮 -->
+  <button class="apply-btn" bindtap="onApply">立即申请</button>
+</view> 
