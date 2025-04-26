@@ -1,4 +1,5 @@
 interface IPageData {
+	currentStatus: string
 	isLogin: boolean;
 	userInfo: WechatMiniprogram.IUser;
 }

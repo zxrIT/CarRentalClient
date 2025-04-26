@@ -35,7 +35,7 @@
   <!-- 我的行程 -->
   <view class="section-title">我的行程</view>
   <view class="order-section">
-    <view class="order-item" bindtap="navigateTo" data-url="/pages/orders/index?status=pending">
+    <view class="order-item" bindtap="navigateTo" data-url="/pages/orders/index?status=waiting">
       <image src="/assets/icon/pending.png" mode="aspectFit"></image>
       <text>待取车</text>
     </view>
@@ -43,11 +43,11 @@
       <image src="/assets/icon/using.png" mode="aspectFit"></image>
       <text>用车中</text>
     </view>
-    <view class="order-item" bindtap="navigateTo" data-url="/pages/orders/index?status=completed">
+    <view class="order-item" bindtap="navigateTo" data-url="/pages/orders/index?status=returned">
       <image src="/assets/icon/returned.png" mode="aspectFit"></image>
       <text>已还车</text>
     </view>
-    <view class="order-item" bindtap="navigateTo" data-url="/pages/orders/index">
+    <view class="order-item" bindtap="navigateTo" data-url="/pages/orders/index?status=all">
       <image src="/assets/icon/all.png" mode="aspectFit"></image>
       <text>全部</text>
     </view>

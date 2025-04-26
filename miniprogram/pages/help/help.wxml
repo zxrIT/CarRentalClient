@@ -12,8 +12,8 @@
       <text>违章处理</text>
       <text class="arrow">></text>
     </view>
-    <view class="help-item">
-      <text>联系客服</text>
+    <view class="help-item" bindtap="navigateToAi">
+      <text>智能推荐客服</text>
       <text class="arrow">></text>
     </view>
   </view>

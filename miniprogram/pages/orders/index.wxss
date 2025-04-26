@@ -1,0 +1,168 @@
+.container {
+	min-height: 100vh;
+	background: #f7f7f7;
+}
+
+.nav-bar {
+	background: #fff;
+	padding: 10px 0;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.nav-items {
+	display: flex;
+	justify-content: space-around;
+}
+
+.nav-item {
+	font-size: 14px;
+	color: #333;
+	padding: 5px 15px;
+}
+
+.nav-item.active {
+	color: #ff6b00;
+	position: relative;
+}
+
+/* 筛选栏样式 */
+.filter-bar {
+	background: #fff;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.filter-dropdown {
+	padding: 20rpx 30rpx;
+	font-size: 28rpx;
+	color: #333;
+	border-bottom: 1rpx solid #eee;
+}
+
+.arrow {
+	font-size: 24rpx;
+	color: #999;
+	margin-left: 8rpx;
+}
+
+.tab-list {
+	display: flex;
+	padding: 0 30rpx;
+	border-bottom: 1rpx solid #eee;
+}
+
+.tab-item {
+	width: 250rpx;
+	height: 50rpx;
+	position: relative;
+	padding: 20rpx 0;
+	margin-right: 40rpx;
+	font-size: 28rpx;
+	text-align: center;
+	line-height: 50rpx;
+	color: #333;
+	margin-left: 40rpx;
+}
+
+.tab-item-active {
+	background-color: #f8e8ba;
+	color: #D06644;
+	border: 1px solid #D06644;
+	border-radius: 30%;
+}
+
+.tab-item.active {
+	color: #ff6b00;
+}
+
+.tab-item.active::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 4rpx;
+	background: #ff6b00;
+}
+
+/* 订单列表样式 */
+.order-list {
+	padding: 20rpx;
+}
+
+.order-item {
+	background: #fff;
+	border-radius: 12rpx;
+	padding: 30rpx;
+	margin-bottom: 20rpx;
+}
+
+.order-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20rpx;
+}
+
+.driver-info {
+	display: flex;
+	align-items: center;
+}
+
+.driver-type {
+	font-size: 32rpx;
+	font-weight: 500;
+	color: #333;
+}
+
+.user-type {
+	font-size: 26rpx;
+	color: #999;
+	margin-left: 16rpx;
+}
+
+.order-status {
+	font-size: 28rpx;
+	color: #999;
+}
+
+.order-content {
+	padding: 10rpx 0;
+}
+
+.info-item {
+	font-size: 28rpx;
+	color: #666;
+	line-height: 2;
+}
+
+.order-footer {
+	margin-top: 20rpx;
+	text-align: right;
+}
+
+.detail-btn {
+	display: inline-block;
+	font-size: 28rpx;
+	color: #666;
+	background: #fff;
+	border: 1rpx solid #ddd;
+	border-radius: 30rpx;
+	padding: 10rpx 30rpx;
+	min-width: 160rpx;
+}
+
+.empty-state {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70vh;
+}
+
+.empty-text {
+	color: #999;
+	font-size: 14px;
+}

@@ -1,0 +1,51 @@
+<view class="container">
+  <!-- 顶部筛选栏 -->
+  <view class="filter-bar">
+    <view class="tab-list">
+      <view 
+        class="tab-item {{currentTab === 'all' ? 'tab-item-active' : ''}}" 
+        bindtap="switchStatus" 
+        mark:status="all"
+      >全部</view>
+      <view 
+        class="tab-item {{currentTab === 'waiting' ? 'tab-item-active' : ''}}" 
+        bindtap="switchStatus" 
+        mark:status="waiting"
+      >待取车</view>
+      <view 
+        class="tab-item {{currentTab === 'using' ? 'tab-item-active' : ''}}" 
+        bindtap="switchStatus" 
+        mark:status="using"
+      >用车中</view>
+      <view 
+        class="tab-item {{currentTab === 'returned' ? 'tab-item-active' : ''}}" 
+        bindtap="switchStatus" 
+        mark:status="returned"
+      >已还车</view>
+    </view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="order-list">
+    <view class="order-item" wx:for="{{filteredOrders}}" wx:key="orderNo">
+      <view class="order-header">
+        <view class="driver-info">
+          <text class="driver-type">自驾</text>
+          <text class="user-type">本人用车</text>
+        </view>
+        <text class="order-status">{{item.status === 0 ? '已还车' : item.status === 1 ? '用车中' : '待取车'}}</text>
+      </view>
+      <view class="order-content">
+        <view class="info-item">订单编号：{{item.orderNo}}</view>
+        <view class="info-item">用车车型：{{item.carType}}</view>
+        <view class="info-item">用车时间：{{item.startTime}} 至 {{item.endTime}}</view>
+        <view class="info-item">订单金额：¥{{item.amount}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!filteredOrders.length}}">
+    <text>暂无订单</text>
+  </view>
+</view> 

@@ -19,7 +19,9 @@
     "pages/features/index",
     "pages/car-list/index",
     "pages/login/index",
-    "pages/car-detail/index"
+    "pages/orders/index",
+    "pages/car-detail/index",
+    "pages/ai/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,8 +48,8 @@
       },
       {
         "pagePath": "pages/mine/index",
-		"iconPath": "/assets/icon/mine.png",
-		"text": "我的",
+        "iconPath": "/assets/icon/mine.png",
+        "text": "我的",
         "selectedIconPath": "/assets/icon/mine-active.png"
       }
     ]
