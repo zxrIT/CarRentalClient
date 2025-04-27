@@ -249,7 +249,6 @@ Page<IPageData>({
         minTime = pickupDate;
       }
     }
-
     this.setData({
       showTimePicker: true,
       pickingReturnTime: type === 'return',

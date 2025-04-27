@@ -11,7 +11,7 @@
       "list": [
         {
           "name": "pages/ai/index",
-          "pathName": "pages/ai/index",
+          "pathName": "pages/car-detail/index",
           "query": "",
           "launchMode": "default",
           "scene": null

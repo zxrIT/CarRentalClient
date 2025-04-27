@@ -3,6 +3,19 @@ import { requestFunction } from "../../utils/request";
 import type { ICarData } from "../../typings/entity/carProduct"
 import { ICarDetail } from "../../typings/entity/carDetail";
 
+interface IOrder {
+	orderNo: string
+	carType: string;
+	startTime: string;
+	endTime: string;
+	amount: number;
+	status: number;
+	type: string;
+	user: string
+	userId: string;
+}
+
+
 interface IPageData {
 	car: {
 		id: string;
@@ -119,7 +132,6 @@ Page<IPageData>({
 	},
 
 	formatCarData(data: any) {
-		console.log(data)
 		return {
 			id: data.id,
 			name: data.name,
@@ -153,7 +165,7 @@ Page<IPageData>({
 		};
 	},
 
-	onBookNow() {
+	async onBookNow() {
 		if (!this.data.isLogin) {
 			wx.navigateTo({
 				url: '/pages/login/index?from=car-detail'
@@ -161,10 +173,35 @@ Page<IPageData>({
 			return;
 		}
 
-		// TODO: 跳转到订单确认页
-		wx.navigateTo({
-			url: `/pages/order-confirm/index?carId=${this.data.car.id}`
+		const app = getApp();
+		const userInfo = JSON.parse(wx.getStorageSync("user"))
+		const orderObject: IOrder = {
+			amount: this.data.car.price * app.globalData.duration,
+			startTime: app.globalData.pickTime,
+			endTime: app.globalData.returnTime,
+			status: 2,
+			userId: userInfo.id,
+			type: "本人用车",
+			user: userInfo.id,
+			carType: this.data.car.name,
+			orderNo: Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
+		}
+		const responseOrder = await requestFunction<BaseResponse<string>>({
+			url: `http://localhost:8080/business/order/increament`,
+			method: 'POST',
+			data: orderObject
 		});
+		if (responseOrder.code === 200) {
+			wx.showToast({
+				title: '添加成功',
+				icon: 'success'
+			});
+		} else {
+			wx.showToast({
+				title: responseOrder.data,
+				icon: 'error'
+			});
+		}
 	},
 
 	onScrollChange(e: any) {
